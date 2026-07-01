@@ -25,6 +25,7 @@ export default function IndustriesPage() {
       <section className="section">
         <div className="container-rq">
           <SectionHeading
+            align="left"
             eyebrow="Industry Cards"
             title={<>Vertical depth with <span className="gradient-text">horizontal reach.</span></>}
             description="Each industry gets purpose-built AI solutions — connected by one platform backbone."
@@ -40,11 +41,12 @@ export default function IndustriesPage() {
       <section className="section bg-section">
         <div className="container-rq">
           <SectionHeading
+            align="left"
             eyebrow="Build With Requanto"
             title={<>Start with your <span className="gradient-text">industry.</span></>}
             description="Tell us your industry and outcomes — we'll bring the AI platforms, automation and advisory."
           />
-          <div className="mt-10 flex flex-wrap justify-center gap-3">
+          <div className="mt-10 flex flex-wrap justify-start gap-3">
             <button onClick={() => navigate('/contact#expert')} className="btn-accent">
               Talk to an industry expert <ArrowRight size={15} />
             </button>

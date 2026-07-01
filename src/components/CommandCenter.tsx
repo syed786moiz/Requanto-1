@@ -41,8 +41,8 @@ export function CommandCenter() {
       {/* center hub */}
       <div className="absolute inset-0 grid place-items-center">
         <div className="relative grid h-32 w-32 place-items-center rounded-full bg-ink-900 text-white shadow-premiumLg">
-          <div className="absolute inset-0 rounded-full bg-gradient-to-br from-brand-600/30 to-transparent" />
-          <div className="absolute -inset-2 rounded-full bg-brand-500/10 blur-xl animate-pulseGlow" />
+          <div className="absolute inset-0 rounded-full bg-accent/20" />
+          <div className="absolute -inset-2 rounded-full bg-accent/10 blur-xl animate-pulseGlow" />
           <div className="relative flex flex-col items-center">
             <Gauge size={26} className="text-accent" />
             <span className="mt-1 text-[15px] font-bold tracking-tight">Requanto</span>
@@ -73,8 +73,8 @@ export function CommandCenter() {
         })}
         <defs>
           <linearGradient id="linkGrad" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stopColor="#2563EB" stopOpacity="0.5" />
-            <stop offset="100%" stopColor="#2563EB" stopOpacity="0.15" />
+            <stop offset="0%" stopColor="#FFE600" stopOpacity="0.5" />
+            <stop offset="100%" stopColor="#FFE600" stopOpacity="0.15" />
           </linearGradient>
         </defs>
       </svg>

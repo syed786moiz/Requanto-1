@@ -24,6 +24,7 @@ export default function ProductsPage() {
       <section className="section">
         <div className="container-rq">
           <SectionHeading
+            align="left"
             eyebrow="Platform Hub"
             title={<>Premium cards for every <span className="gradient-text">enterprise need.</span></>}
             description="Explore the full Requanto product family — vertically deep, horizontally connected."
@@ -97,6 +98,7 @@ function ProductDeepDive() {
     <section className="section bg-section">
       <div className="container-rq space-y-16">
         <SectionHeading
+          align="left"
           eyebrow="Flagship Platforms"
           title={<>A closer look at the <span className="gradient-text">core four.</span></>}
           description="The four platforms that anchor the Requanto ecosystem."
@@ -145,7 +147,7 @@ function ProductDashboard({ product }: { product: Product }) {
   const Icon = product.icon;
   return (
     <div className="relative">
-      <div className="absolute -inset-3 rounded-[1.5rem] bg-gradient-to-br from-brand-100/40 to-accent/10 blur-lg" />
+      <div className="absolute -inset-3 rounded-[1.5rem] bg-accent/10 blur-lg" />
       <div className="relative overflow-hidden rounded-2xl border border-ink-200/70 bg-white shadow-premiumLg">
         <div className="flex items-center justify-between border-b border-ink-100 bg-section/50 px-5 py-3">
           <div className="flex items-center gap-2">
@@ -175,7 +177,7 @@ function ProductDashboard({ product }: { product: Product }) {
               <Grid3x3 size={14} className="text-ink-400" />
               <span className="flex-1 text-xs font-medium text-ink-700">{m}</span>
               <div className="h-1 w-20 overflow-hidden rounded-full bg-ink-100">
-                <div className="h-full rounded-full bg-gradient-to-r from-brand-500 to-brand-400" style={{ width: `${60 + i * 8}%` }} />
+                <div className="h-full rounded-full bg-accent" style={{ width: `${60 + i * 8}%` }} />
               </div>
               <span className="text-[10px] font-bold text-success">{60 + i * 8}%</span>
             </div>

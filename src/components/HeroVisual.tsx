@@ -11,12 +11,12 @@ const INSIGHTS = [
 export function HeroVisual() {
   return (
     <div className="relative mx-auto w-full max-w-md lg:max-w-lg">
-      <div className="absolute -inset-6 rounded-3xl bg-gradient-to-br from-brand-500/15 via-transparent to-accent/10 blur-2xl" />
+      <div className="absolute -inset-6 rounded-3xl bg-accent/10 blur-2xl" />
 
       <div className="relative overflow-hidden rounded-2xl border border-ink-200/80 bg-white shadow-premiumLg">
         <div className="flex items-center justify-between border-b border-ink-100 bg-ink-950 px-4 py-3">
           <div className="flex items-center gap-2">
-            <span className="grid h-7 w-7 place-items-center rounded-lg bg-brand-600 text-white">
+            <span className="grid h-7 w-7 place-items-center rounded-lg bg-accent text-ink-900">
               <Sparkles size={14} />
             </span>
             <span className="text-sm font-semibold text-white">Requanto AI</span>

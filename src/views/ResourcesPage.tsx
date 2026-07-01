@@ -42,7 +42,7 @@ export default function ResourcesPage() {
 
       <section className="section">
         <div className="container-rq">
-          <div className="flex flex-wrap justify-center gap-2" id="blog">
+          <div className="flex flex-wrap justify-start gap-2" id="blog">
             {TABS.map((t) => (
               <button
                 key={t.id}
@@ -70,6 +70,7 @@ export default function ResourcesPage() {
       <section className="section bg-section" id="cases">
         <div className="container-rq">
           <SectionHeading
+            align="left"
             eyebrow="Case Studies"
             title={<>Outcomes across <span className="gradient-text">six industries.</span></>}
             description="Real transformation results from real Requanto engagements."
@@ -134,7 +135,7 @@ function CaseStudyCard({ cs, index, onAction }: { cs: typeof CASE_STUDIES[number
         <p className="mt-2 text-sm text-ink-600">{cs.outcome}</p>
         <div className="mt-4 grid w-full grid-cols-3 gap-2 border-t border-ink-100 pt-4">
           {cs.metrics.map((m) => (
-            <div key={m.label} className="text-center">
+            <div key={m.label} className="text-left">
               <div className="text-base font-bold gradient-text">{m.value}</div>
               <div className="mt-0.5 text-[10px] text-ink-500">{m.label}</div>
             </div>

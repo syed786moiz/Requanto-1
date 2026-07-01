@@ -33,12 +33,13 @@ export default function AgentsPage() {
       <section className="section">
         <div className="container-rq">
           <SectionHeading
+            align="left"
             eyebrow="Agent Catalog"
             title={<>Twelve agents. <span className="gradient-text">One platform.</span></>}
             description="Filter by function and click any agent to explore its tasks, integrations and outcomes."
           />
 
-          <div className="mt-8 flex flex-wrap justify-center gap-2">
+          <div className="mt-8 flex flex-wrap justify-start gap-2">
             {CATEGORIES.map((c) => (
               <button
                 key={c}
@@ -61,7 +62,7 @@ export default function AgentsPage() {
           </div>
 
           {filtered.length === 0 && (
-            <div className="mt-10 text-center text-ink-500">No agents in this category.</div>
+            <div className="mt-10 text-left text-ink-500">No agents in this category.</div>
           )}
         </div>
       </section>
@@ -169,7 +170,7 @@ function AgentDetail({ agent, onClose, onAction }: { agent: Agent; onClose: () =
               </div>
             ))}
           </div>
-          <div className="mt-5 grid gap-2 rounded-xl border border-ink-200/70 bg-gradient-to-br from-brand-50/40 to-accent/5 p-4">
+          <div className="mt-5 grid gap-2 rounded-xl border border-ink-200/70 bg-accent/10 p-4">
             <div className="flex items-center justify-between text-xs">
               <span className="text-ink-500">Category</span>
               <span className="font-semibold text-ink-900">{agent.category}</span>

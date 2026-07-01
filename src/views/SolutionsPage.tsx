@@ -78,6 +78,7 @@ export default function SolutionsPage() {
       <section className="section bg-section">
         <div className="container-rq">
           <SectionHeading
+            align="left"
             eyebrow="How We Transform"
             title={<>A proven path from <span className="gradient-text">pilot to enterprise AI.</span></>}
             description="Four phases. One outcome-driven engagement model."
@@ -93,6 +94,7 @@ export default function SolutionsPage() {
       <section className="section">
         <div className="container-rq">
           <SectionHeading
+            align="left"
             eyebrow="Outcome Promise"
             title={<>Built for measurable <span className="gradient-text">business outcomes.</span></>}
             description="Every engagement is measured by real enterprise metrics — not vanity activity."
@@ -107,7 +109,7 @@ export default function SolutionsPage() {
               <OutcomeCard key={o.label} {...o} />
             ))}
           </div>
-          <div className="mt-12 text-center">
+          <div className="mt-12 text-left">
             <button onClick={() => navigate('/resources#cases')} className="btn-primary">
               See case studies <ArrowRight size={15} />
             </button>
@@ -155,7 +157,7 @@ function SolutionArea({ area, reversed }: { area: typeof SOLUTION_AREAS[number];
 function SolutionVisual({ area }: { area: typeof SOLUTION_AREAS[number] }) {
   return (
     <div className="relative">
-      <div className="absolute -inset-3 rounded-[1.5rem] bg-gradient-to-br from-brand-100/40 via-white to-accent/10 blur-lg" />
+      <div className="absolute -inset-3 rounded-[1.5rem] bg-accent/10 blur-lg" />
       <div className="relative overflow-hidden rounded-2xl border border-ink-200/70 bg-white p-6 shadow-premiumLg">
         <div className="flex items-center justify-between border-b border-ink-100 pb-4">
           <div className="flex items-center gap-2">
@@ -173,7 +175,7 @@ function SolutionVisual({ area }: { area: typeof SOLUTION_AREAS[number] }) {
               <div className="flex-1">
                 <div className="text-sm font-semibold text-ink-900">{s}</div>
                 <div className="mt-1.5 h-1.5 w-full overflow-hidden rounded-full bg-ink-100">
-                  <div className="h-full rounded-full bg-gradient-to-r from-brand-500 to-brand-400" style={{ width: `${65 + i * 10}%` }} />
+                  <div className="h-full rounded-full bg-accent" style={{ width: `${65 + i * 10}%` }} />
                 </div>
               </div>
               <span className="text-xs font-bold text-success">{65 + i * 10}%</span>

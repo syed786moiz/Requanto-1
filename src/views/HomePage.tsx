@@ -241,9 +241,10 @@ function BusinessAreaCard({ icon: Icon, title, tag, items, index }: any) {
 function PlatformEcosystem() {
   const { ref, visible } = useReveal();
   return (
-    <section className="section-home relative overflow-hidden bg-ink-950 text-white">
+    <section className="section-home relative overflow-hidden bg-[#2E2E38] text-white">
       <div className="absolute inset-0 dot-bg opacity-[0.06]" />
-      <div className="absolute left-1/2 top-1/2 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-600/15 blur-3xl" />
+      <div className="absolute left-1/2 top-1/2 h-[640px] w-[640px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent/10 blur-3xl" />
+      <div className="absolute -right-24 top-10 h-64 w-64 rounded-full bg-white/5 blur-3xl" />
 
       <div className="container-rq relative">
         <SectionHeading
@@ -254,9 +255,23 @@ function PlatformEcosystem() {
         />
 
         <div ref={ref} className={`reveal mt-8 ${visible ? 'is-visible' : ''}`}>
-          <div className="relative mx-auto max-w-4xl overflow-hidden px-2 sm:px-0">
-            <div className="grid place-items-center">
-              <EcosystemDiagram />
+          <div className="relative mx-auto max-w-5xl overflow-hidden rounded-3xl border border-white/10 bg-white/[0.04] p-4 shadow-premiumLg backdrop-blur sm:p-6">
+            <div className="grid gap-5">
+              <div className="grid place-items-center">
+                <EcosystemDiagram />
+              </div>
+              <div className="grid gap-3 sm:grid-cols-2">
+                <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
+                  <div className="text-[11px] font-semibold uppercase tracking-[0.14em] text-white/55">Core Layer</div>
+                  <div className="mt-2 text-sm font-semibold text-white">Requanto Platform Hub</div>
+                  <p className="mt-1 text-sm text-white/70">Central governance, AI orchestration, and operational visibility.</p>
+                </div>
+                <div className="rounded-2xl border border-accent/30 bg-accent/10 p-4">
+                  <div className="text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">Connected Outcomes</div>
+                  <div className="mt-2 text-sm font-semibold text-white">Industry + Platform Synchronization</div>
+                  <p className="mt-1 text-sm text-white/75">Signals flow across products and industries for faster decisions.</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -282,7 +297,7 @@ function EcosystemDiagram() {
           const angle = (i / platformCount) * 360;
           const x = 50 + (radius * 0.5) * Math.cos((angle * Math.PI) / 180);
           const y = 50 + (radius * 0.5) * Math.sin((angle * Math.PI) / 180);
-          return <line key={i} x1="50" y1="50" x2={x} y2={y} stroke="rgba(37,99,235,0.2)" strokeWidth="0.3" strokeDasharray="1 1.5" />;
+          return <line key={i} x1="50" y1="50" x2={x} y2={y} stroke="rgba(255,230,0,0.18)" strokeWidth="0.3" strokeDasharray="1 1.5" />;
         })}
         {INDUSTRIES_PLATFORM.map((_, i) => {
           const radius = 50;
@@ -295,8 +310,8 @@ function EcosystemDiagram() {
 
       {/* center hub */}
       <div className="absolute inset-0 grid place-items-center">
-        <div className="relative grid h-28 w-28 place-items-center rounded-full bg-gradient-to-br from-ink-800 to-ink-950 text-white shadow-premiumLg ring-1 ring-white/10">
-          <div className="absolute -inset-3 rounded-full bg-brand-500/15 blur-xl animate-pulseGlow" />
+        <div className="relative grid h-28 w-28 place-items-center rounded-full bg-ink-900 text-white shadow-premiumLg ring-1 ring-accent/30">
+          <div className="absolute -inset-3 rounded-full bg-accent/20 blur-xl animate-pulseGlow" />
           <div className="relative flex flex-col items-center">
             <Network size={22} className="text-accent" />
             <span className="mt-1 text-xs font-bold">Requanto</span>
@@ -313,8 +328,8 @@ function EcosystemDiagram() {
         const y = 50 + (radius * 0.5) * Math.sin((angle * Math.PI) / 180);
         return (
           <div key={p} className="absolute -translate-x-1/2 -translate-y-1/2" style={{ left: `${x}%`, top: `${y}%` }}>
-            <div className="flex max-w-[5.5rem] items-center gap-1 rounded-lg border border-white/10 bg-white/5 px-1.5 py-1 text-[8px] font-medium leading-tight text-white backdrop-blur-sm sm:max-w-none sm:gap-1.5 sm:px-2.5 sm:py-1.5 sm:text-[10px]">
-              <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-brand-400" />
+            <div className="flex max-w-[5.5rem] items-center gap-1 rounded-lg border border-white/15 bg-white/[0.06] px-1.5 py-1 text-[8px] font-medium leading-tight text-white backdrop-blur-sm sm:max-w-none sm:gap-1.5 sm:px-2.5 sm:py-1.5 sm:text-[10px]">
+              <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
               <span className="truncate">{p}</span>
             </div>
           </div>

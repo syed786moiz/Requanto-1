@@ -31,6 +31,7 @@ export default function ServicesPage() {
       <section className="section">
         <div className="container-rq">
           <SectionHeading
+            align="left"
             eyebrow="Service Catalog"
             title={<>Senior leadership in <span className="gradient-text">every engagement.</span></>}
             description="A connected suite of services — security, technology, cloud and AI adoption."
@@ -46,6 +47,7 @@ export default function ServicesPage() {
       <section className="section bg-section">
         <div className="container-rq">
           <SectionHeading
+            align="left"
             eyebrow="Engagement Model"
             title={<>Outcome-driven in <span className="gradient-text">four phases.</span></>}
             description="A predictable engagement that turns ambition into a shipped, measurable AI transformation."
@@ -143,7 +145,7 @@ function ServiceVisual({ service }: { service: ServiceCard }) {
   const Icon = service.icon;
   return (
     <div className="relative">
-      <div className="absolute -inset-3 rounded-[1.5rem] bg-gradient-to-br from-brand-100/40 to-accent/10 blur-lg" />
+      <div className="absolute -inset-3 rounded-[1.5rem] bg-accent/10 blur-lg" />
       <div className="relative overflow-hidden rounded-2xl border border-ink-200/70 bg-white shadow-premiumLg">
         <div className="flex items-center justify-between border-b border-ink-100 bg-section/50 px-5 py-3">
           <div className="flex items-center gap-2">

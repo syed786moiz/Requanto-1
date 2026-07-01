@@ -10,7 +10,7 @@ export function Footer() {
   return (
     <footer className="relative overflow-hidden bg-ink-950 text-ink-300">
       <div className="absolute inset-0 dot-bg opacity-[0.07]" />
-      <div className="absolute -left-20 top-0 h-72 w-72 rounded-full bg-brand-600/15 blur-3xl" />
+      <div className="absolute -left-20 top-0 h-72 w-72 rounded-full bg-accent/15 blur-3xl" />
       <div className="absolute -right-20 bottom-0 h-72 w-72 rounded-full bg-accent/10 blur-3xl" />
 
       <div className="container-rq relative py-16">

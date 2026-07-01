@@ -60,7 +60,7 @@ export default function CyberCheckPage() {
                   <span className="text-xs text-ink-500">{Object.keys(answers).length}/{CHECKS.length} answered</span>
                 </div>
                 <div className="mt-4 h-1.5 w-full overflow-hidden rounded-full bg-ink-100">
-                  <div className="h-full rounded-full bg-gradient-to-r from-brand-500 to-brand-400 transition-all duration-500" style={{ width: `${(Object.keys(answers).length / CHECKS.length) * 100}%` }} />
+                  <div className="h-full rounded-full bg-accent transition-all duration-500" style={{ width: `${(Object.keys(answers).length / CHECKS.length) * 100}%` }} />
                 </div>
 
                 <div className="mt-6 space-y-5">
@@ -122,7 +122,7 @@ export default function CyberCheckPage() {
                 </div>
 
                 <div className="mt-6 grid gap-4 sm:grid-cols-3">
-                  <div className="rounded-xl bg-gradient-to-br from-ink-900 to-ink-800 p-5 text-white sm:col-span-1">
+                  <div className="rounded-xl bg-ink-900 p-5 text-white sm:col-span-1">
                     <div className="text-[11px] uppercase tracking-wide text-ink-400">Overall Score</div>
                     <div className="mt-1 text-5xl font-bold text-accent">{score}</div>
                     <div className="mt-1 text-xs text-ink-300">Grade {grade} · / 100</div>
@@ -176,7 +176,7 @@ export default function CyberCheckPage() {
               </div>
             )}
 
-            <div className="mt-4 flex items-center justify-center gap-2 text-xs text-ink-500">
+            <div className="mt-4 flex items-center justify-start gap-2 text-xs text-ink-500">
               <AlertTriangle size={12} /> Indicative assessment · not a substitute for an expert security audit
             </div>
           </div>

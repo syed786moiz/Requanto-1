@@ -24,18 +24,18 @@ export function PageHero({
   const isDark = theme === 'dark';
 
   return (
-    <section className={`relative overflow-hidden ${isDark ? 'bg-ink-950 text-white' : 'bg-white'} pt-24 sm:pt-32 pb-12 sm:pb-16`}>
+    <section className={`relative overflow-hidden ${isDark ? 'bg-ink-950 text-white' : 'bg-white'} pt-24 sm:pt-12 pb-12 sm:pb-12`}>
       {isDark ? (
         <>
           <div className="absolute inset-0 dot-bg opacity-[0.06]" />
-          <div className="absolute -right-32 top-20 h-96 w-96 rounded-full bg-brand-600/20 blur-3xl" />
+          <div className="absolute -right-32 top-20 h-96 w-96 rounded-full bg-accent/15 blur-3xl" />
           <div className="absolute -left-32 top-40 h-80 w-80 rounded-full bg-accent/10 blur-3xl" />
         </>
       ) : (
         <>
           <div className="absolute inset-0 grid-bg opacity-50" />
-          <div className="absolute inset-x-0 top-0 h-[420px] bg-gradient-to-b from-brand-50/60 to-transparent" />
-          <div className="absolute -right-24 top-24 h-80 w-80 rounded-full bg-brand-200/30 blur-3xl" />
+          <div className="absolute inset-x-0 top-0 h-[420px] bg-accent/5" />
+          <div className="absolute -right-24 top-24 h-80 w-80 rounded-full bg-accent/15 blur-3xl" />
         </>
       )}
       <div className="container-rq relative">
@@ -46,7 +46,7 @@ export function PageHero({
           </span>
           <h1 className={`mt-5 text-display-xl text-balance ${isDark ? 'text-white' : 'text-ink-900'}`}>
             {title}{' '}
-            {highlight && <span className={isDark ? 'gradient-text-accent' : 'gradient-text'}>{highlight}</span>}
+            {highlight && <span className={isDark ? 'gradient-text-accent' : 'text-ink-900'}>{highlight}</span>}
           </h1>
           {description && (
             <p className={`mt-5 max-w-2xl text-lg leading-relaxed text-balance ${isDark ? 'text-ink-300' : 'text-ink-600'}`}>

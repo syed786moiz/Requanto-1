@@ -62,6 +62,7 @@ export default function InnovationLabPage() {
       <section className="section">
         <div className="container-rq">
           <SectionHeading
+            align="left"
             eyebrow="Innovation Tracks"
             title={<>Five labs. <span className="gradient-text">One AI methodology.</span></>}
             description="Each lab pairs industry practitioners with AI engineers to ship outcomes — not just experiments."
@@ -77,6 +78,7 @@ export default function InnovationLabPage() {
       <section className="section bg-section">
         <div className="container-rq">
           <SectionHeading
+            align="left"
             eyebrow="Lab Methodology"
             title={<>From hypothesis to <span className="gradient-text">production AI.</span></>}
             description="Our repeatable approach ensures every AI solution is grounded, governed and measured."
@@ -104,7 +106,7 @@ export default function InnovationLabPage() {
               );
             })}
           </div>
-          <div className="mt-12 text-center">
+          <div className="mt-12 text-left">
             <button onClick={() => navigate('/contact#expert')} className="btn-primary">
               Request a lab briefing <ArrowRight size={15} />
             </button>

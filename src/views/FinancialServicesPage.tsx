@@ -75,7 +75,7 @@ export default function FinancialServicesPage() {
         <div className="container-rq">
           <div className="relative overflow-hidden rounded-3xl bg-ink-950 px-6 py-12 text-white sm:px-12 sm:py-16">
             <div className="absolute inset-0 dot-bg opacity-[0.07]" />
-            <div className="absolute -right-24 -top-24 h-72 w-72 rounded-full bg-brand-600/20 blur-3xl" />
+            <div className="absolute -right-24 -top-24 h-72 w-72 rounded-full bg-accent/15 blur-3xl" />
             <div className="relative grid gap-8 lg:grid-cols-2 lg:items-center">
               <div>
                 <span className="eyebrow-light">

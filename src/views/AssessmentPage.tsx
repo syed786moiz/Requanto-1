@@ -95,7 +95,7 @@ export default function AssessmentPage() {
                   <span className="text-xs text-ink-500">{answered}/{QUESTIONS.length} answered</span>
                 </div>
                 <div className="mt-4 h-1.5 w-full overflow-hidden rounded-full bg-ink-100">
-                  <div className="h-full rounded-full bg-gradient-to-r from-brand-500 to-brand-400 transition-all duration-500" style={{ width: `${(answered / QUESTIONS.length) * 100}%` }} />
+                  <div className="h-full rounded-full bg-accent transition-all duration-500" style={{ width: `${(answered / QUESTIONS.length) * 100}%` }} />
                 </div>
                 <h3 className="mt-6 text-xl font-bold text-ink-900">{q.text}</h3>
                 <div className="mt-5 grid gap-2.5">
@@ -151,8 +151,8 @@ export default function AssessmentPage() {
 function StartCard({ onStart }: { onStart: () => void }) {
   return (
     <div className="rounded-2xl border border-ink-200/70 bg-white p-6 shadow-premiumLg sm:p-10">
-      <div className="text-center">
-        <span className="mx-auto grid h-14 w-14 place-items-center rounded-2xl bg-ink-900 text-accent">
+      <div className="text-left">
+        <span className="grid h-14 w-14 place-items-center rounded-2xl bg-ink-900 text-accent">
           <Brain size={26} />
         </span>
         <h3 className="mt-5 text-2xl font-bold text-ink-900">Assess your AI readiness</h3>
@@ -166,18 +166,18 @@ function StartCard({ onStart }: { onStart: () => void }) {
           { icon: ShieldCheck, label: 'Cybersecurity' },
           { icon: TrendingUp, label: 'Digital Transformation' },
         ].map((d) => (
-          <div key={d.label} className="rounded-xl border border-ink-200/70 bg-section/50 p-4 text-center">
-            <d.icon size={20} className="mx-auto text-brand-600" />
+          <div key={d.label} className="rounded-xl border border-ink-200/70 bg-section/50 p-4 text-left">
+            <d.icon size={20} className="text-brand-600" />
             <div className="mt-2 text-sm font-semibold text-ink-800">{d.label}</div>
           </div>
         ))}
       </div>
-      <div className="mt-8 text-center">
+      <div className="mt-8 text-left">
         <button onClick={onStart} className="btn-accent">
           Start assessment <ArrowRight size={15} />
         </button>
       </div>
-      <div className="mt-4 flex items-center justify-center gap-2 text-xs text-ink-500">
+      <div className="mt-4 flex items-center justify-start gap-2 text-xs text-ink-500">
         <AlertCircle size={12} /> Takes about 3 minutes · No email required to preview results
       </div>
     </div>
@@ -204,15 +204,15 @@ function ResultsCard({ scores, onReset, onAction }: { scores: { ai: number; secu
       </div>
 
       <div className="mt-6 grid gap-4 sm:grid-cols-4">
-        <div className="rounded-xl bg-gradient-to-br from-ink-900 to-ink-800 p-5 text-white sm:col-span-1">
+        <div className="rounded-xl bg-ink-900 p-5 text-white sm:col-span-1">
           <div className="text-[11px] uppercase tracking-wide text-ink-400">Overall</div>
           <div className="mt-1 text-4xl font-bold text-accent">{overall}</div>
           <div className="mt-1 text-xs text-ink-300">/ 100</div>
         </div>
         {[
-          { label: 'AI Maturity', value: scores.ai, icon: Brain, color: 'from-brand-500 to-brand-400' },
-          { label: 'Cybersecurity', value: scores.security, icon: ShieldCheck, color: 'from-success to-emerald-400' },
-          { label: 'Digital Transformation', value: scores.digital, icon: TrendingUp, color: 'from-accent to-accent-dark' },
+          { label: 'AI Maturity', value: scores.ai, icon: Brain, color: 'bg-accent' },
+          { label: 'Cybersecurity', value: scores.security, icon: ShieldCheck, color: 'bg-success' },
+          { label: 'Digital Transformation', value: scores.digital, icon: TrendingUp, color: 'bg-accent-dark' },
         ].map((s) => (
           <div key={s.label} className="rounded-xl border border-ink-200/70 bg-white p-5">
             <div className="flex items-center gap-2">
@@ -221,7 +221,7 @@ function ResultsCard({ scores, onReset, onAction }: { scores: { ai: number; secu
             </div>
             <div className="mt-2 text-3xl font-bold text-ink-900">{s.value}</div>
             <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-ink-100">
-              <div className={`h-full rounded-full bg-gradient-to-r ${s.color}`} style={{ width: `${s.value}%` }} />
+              <div className={`h-full rounded-full ${s.color}`} style={{ width: `${s.value}%` }} />
             </div>
           </div>
         ))}

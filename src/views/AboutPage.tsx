@@ -44,6 +44,7 @@ export default function AboutPage() {
       <section className="section bg-section">
         <div className="container-rq">
           <SectionHeading
+            align="left"
             eyebrow="Why Requanto"
             title={<>A strategic partner, <span className="gradient-text">powered by AI.</span></>}
             description="Never a software development shop — always a transformation partner."
@@ -71,6 +72,7 @@ export default function AboutPage() {
       <section className="section">
         <div className="container-rq">
           <SectionHeading
+            align="left"
             eyebrow="Our Values"
             title={<>Principles that <span className="gradient-text">guide every engagement.</span></>}
           />
@@ -97,6 +99,7 @@ export default function AboutPage() {
       <section className="section bg-section">
         <div className="container-rq">
           <SectionHeading
+            align="left"
             eyebrow="Leadership"
             title={<>Senior leadership <span className="gradient-text">in every engagement.</span></>}
             description="A leadership bench with enterprise, security and AI engineering depth."
@@ -108,7 +111,7 @@ export default function AboutPage() {
               return (
                 <div key={p.name} ref={ref} className={`reveal reveal-delay-${(i % 3) + 1} ${visible ? 'is-visible' : ''}`}>
                   <div className="flex items-start gap-4 rounded-2xl border border-ink-200/70 bg-white p-5 shadow-premium">
-                    <span className="grid h-14 w-14 shrink-0 place-items-center rounded-xl bg-gradient-to-br from-ink-900 to-ink-700 text-lg font-bold text-accent">
+                    <span className="grid h-14 w-14 shrink-0 place-items-center rounded-xl bg-ink-900 text-lg font-bold text-accent">
                       {initials}
                     </span>
                     <div>
@@ -153,13 +156,13 @@ export default function AboutPage() {
         <div className="container-rq">
           <div className="relative overflow-hidden rounded-3xl bg-ink-950 px-6 py-12 text-white sm:px-12 sm:py-16">
             <div className="absolute inset-0 dot-bg opacity-[0.07]" />
-            <div className="absolute -right-24 -top-24 h-72 w-72 rounded-full bg-brand-600/20 blur-3xl" />
-            <div className="relative mx-auto max-w-2xl text-center">
+            <div className="absolute -right-24 -top-24 h-72 w-72 rounded-full bg-accent/15 blur-3xl" />
+            <div className="relative max-w-2xl text-left">
               <h2 className="text-display-lg text-balance">
                 Become an <span className="gradient-text-accent">AI-native enterprise.</span>
               </h2>
               <p className="mt-4 text-ink-300">Partner with Requanto — platforms, automation, security and advisory under one roof.</p>
-              <div className="mt-7 flex flex-wrap justify-center gap-3">
+              <div className="mt-7 flex flex-wrap justify-start gap-3">
                 <button onClick={() => navigate('/contact#consultation')} className="btn-accent">
                   Get started <ArrowRight size={15} />
                 </button>
