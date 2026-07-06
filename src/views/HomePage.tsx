@@ -74,7 +74,7 @@ function HeroSection() {
       <HeroDecorations />
 
       <div className="container-rq relative z-10 pt-8 pb-0 md:pt-10 lg:pt-12">
-        <div className="grid items-start gap-x-10 gap-y-0 lg:grid-cols-[50%_50%] xl:gap-x-14">
+        <div className="grid items-start gap-x-10 gap-y-10 lg:grid-cols-[50%_50%] lg:gap-y-0 xl:gap-x-14">
           <div className="relative z-20 min-w-0 overflow-visible">
             <div className="inline-flex items-center gap-2 rounded-full border border-[#E5E7EB] bg-white px-3.5 py-1.5 shadow-sm">
               <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#FF6B00]" />
@@ -443,9 +443,9 @@ function EcosystemDiagram() {
 
   return (
     <div className="relative mx-auto w-full max-w-[1100px]">
-      <div className="relative grid grid-cols-[1fr_auto_1fr] grid-rows-3 items-stretch gap-x-4 gap-y-4 sm:gap-x-6 sm:gap-y-5 md:gap-x-10 md:gap-y-5">
+      <div className="relative flex flex-col items-center gap-6 lg:grid lg:grid-cols-[1fr_auto_1fr] lg:grid-rows-3 lg:items-stretch lg:gap-x-6 lg:gap-y-5 xl:gap-x-10">
         <svg
-          className="pointer-events-none absolute inset-0 h-full w-full"
+          className="pointer-events-none absolute inset-0 hidden h-full w-full lg:block"
           viewBox="0 0 100 100"
           preserveAspectRatio="none"
           aria-hidden
@@ -469,7 +469,7 @@ function EcosystemDiagram() {
         {ECOSYSTEM_LEFT.map((node, i) => (
           <div
             key={node.title}
-            className="relative z-10 col-start-1 flex min-w-0 w-full max-w-[360px] justify-self-stretch"
+            className="relative z-10 flex min-w-0 w-full max-w-[360px] lg:col-start-1 lg:justify-self-stretch"
             style={{ gridRow: i + 1 }}
           >
             <EcosystemNodeCard
@@ -481,7 +481,7 @@ function EcosystemDiagram() {
           </div>
         ))}
 
-        <div className="relative z-10 col-start-2 row-span-3 row-start-1 flex items-center justify-center self-center px-2">
+        <div className="relative z-10 flex items-center justify-center self-center px-2 lg:col-start-2 lg:row-span-3 lg:row-start-1">
           <div className="relative flex h-[7.5rem] w-[7.5rem] flex-col items-center justify-center rounded-full bg-gradient-to-br from-[#1a4a3e] via-[#214635] to-[#0d1f17] text-center shadow-[0_0_48px_rgba(31,158,105,0.28)] sm:h-36 sm:w-36 md:h-40 md:w-40">
             <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle_at_35%_30%,rgba(61,214,140,0.2),transparent_55%)]" />
             <div className="relative flex flex-col items-center justify-center gap-2 px-3">
@@ -504,7 +504,7 @@ function EcosystemDiagram() {
         {ECOSYSTEM_RIGHT.map((node, i) => (
           <div
             key={`${node.title}-${i}`}
-            className="relative z-10 col-start-3 flex min-w-0 w-full max-w-[360px] justify-self-stretch"
+            className="relative z-10 flex min-w-0 w-full max-w-[360px] lg:col-start-3 lg:justify-self-stretch"
             style={{ gridRow: i + 1 }}
           >
             <EcosystemNodeCard
