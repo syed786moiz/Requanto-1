@@ -1,235 +1,428 @@
 'use client';
 
-import { ArrowRight, CalendarClock, Sparkles, ShieldCheck, Boxes, Briefcase, Workflow, Network, Cpu, Activity, Building2, Brain, CheckCircle2, TrendingUp, Zap } from 'lucide-react';
+import { useState } from 'react';
+import {
+  ArrowRight,
+  Play,
+  Layers3,
+  Workflow,
+  ShieldCheck,
+  Building2,
+  Factory,
+  Activity,
+  Banknote,
+  Network,
+  Sparkles,
+  BarChart3,
+  Users,
+  ChevronDown,
+  ChevronRight,
+  Cloud,
+  User,
+  Boxes,
+  Target,
+  Brain,
+  ShoppingCart,
+  Headphones,
+  TrendingUp,
+  Calendar,
+  Lock,
+  Lightbulb,
+  Shield,
+} from 'lucide-react';
 import { useRoute } from '../lib/router';
-import { useReveal } from '../lib/hooks';
-import { HeroVisual } from '../components/HeroVisual';
-import { AnimatedMetrics } from '../components/AnimatedMetrics';
-import { SectionHeading } from '../components/ui/SectionHeading';
-import { PLATFORMS, INDUSTRIES_PLATFORM, AGENTS } from '../data/content';
+import { useInView } from '../lib/hooks';
 
 export default function HomePage() {
   return (
-    <>
-      <Hero />
-      <TrustSection />
-      <WhatWeDo />
-      <BusinessAreas />
-      <PlatformEcosystem />
-      <InnovationLab />
-      <AgentsPreview />
-      <FinalCTA />
-    </>
-  );
-}
-
-function Hero() {
-  const { navigate } = useRoute();
-  return (
-    <section className="relative overflow-hidden bg-white">
-      <div className="hero-mesh pointer-events-none absolute inset-0" />
-      <div className="pointer-events-none absolute right-0 top-0 h-72 w-72 rounded-full bg-brand-400/10 blur-3xl sm:h-96 sm:w-96" />
-
-      <div className="container-rq relative py-5 lg:py-12">
-        <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
-          <div>
-            <span className="inline-flex items-center gap-2 rounded-full border border-brand-200/70 bg-brand-50/60 px-3 py-1 text-xs font-semibold text-brand-700">
-              <span className="h-1.5 w-1.5 rounded-full bg-brand-500 animate-pulseGlow" />
-              Enterprise AI Platform
-            </span>
-
-            <h1 className="mt-5 max-w-lg text-4xl font-bold leading-[1.08] tracking-tight text-ink-900 sm:text-5xl lg:text-[3.25rem]">
-              Build <span className="hero-gradient-text">AI-native</span> enterprises that scale.
-            </h1>
-
-            <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
-              <button onClick={() => navigate('/contact#consultation')} className="btn-accent px-6 py-2.5">
-                <CalendarClock size={16} /> Get Started
-              </button>
-              <button onClick={() => navigate('/solutions')} className="btn-outline px-6 py-2.5">
-                Explore Solutions <ArrowRight size={16} />
-              </button>
-            </div>
-
-            <div className="mt-8 flex gap-8 border-t border-ink-100 pt-6">
-              {[
-                { value: '100+', label: 'Workflows' },
-                { value: '50+', label: 'AI use cases' },
-                { value: '24/7', label: 'Support' },
-              ].map((s) => (
-                <div key={s.label}>
-                  <div className="text-xl font-bold text-ink-900">{s.value}</div>
-                  <div className="mt-0.5 text-xs text-ink-500">{s.label}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="lg:justify-self-end lg:pl-6">
-            <HeroVisual />
-          </div>
-        </div>
-      </div>
-
-      <div className="border-t border-ink-100 bg-section/50 py-4">
-        <div className="container-rq">
-          <div className="mask-fade-r overflow-hidden">
-            <div className="flex w-max gap-10 animate-marquee">
-              {[...PLATFORMS, ...PLATFORMS].map((p, i) => (
-                <span key={`${p}-${i}`} className="whitespace-nowrap text-sm font-medium text-ink-400">
-                  {p}
-                </span>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function TrustSection() {
-  const { ref, visible } = useReveal();
-  return (
-    <section className="section-home">
-      <div className="container-rq">
-        <div ref={ref} className={`reveal ${visible ? 'is-visible' : ''}`}>
-          <div className="text-left">
-            <span className="eyebrow">
-              <CheckCircle2 size={12} className="text-success" />
-              Trusted Enterprise Transformation Partner
-            </span>
-          </div>
-          <div className="mt-6">
-            <AnimatedMetrics
-              metrics={[
-                { value: 100, suffix: '+', label: 'Enterprise Workflows' },
-                { value: 50, suffix: '+', label: 'AI Use Cases' },
-                { value: 10, suffix: '+', label: 'Industry Solutions' },
-                { value: 24, suffix: '/7', label: 'Global Delivery' },
-              ]}
-            />
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function WhatWeDo() {
-  const cards = [
-    { icon: Boxes, title: 'AI Enterprise SaaS Platforms', desc: 'Vertical AI platforms for real estate, operations, finance and GRC — designed for scale and outcome.', to: '/products', accent: 'brand' },
-    { icon: Workflow, title: 'AI Low-Code / No-Code Platform', desc: 'Drag-and-drop workflows, dynamic forms, rule engines and AI automation — without engineering debt.', to: '/products#studio', accent: 'accent' },
-    { icon: ShieldCheck, title: 'Cybersecurity & GRC', desc: 'Assessments, architecture, compliance and third-party risk — guided by a virtual CISO.', to: '/services#vciso', accent: 'brand' },
-    { icon: Briefcase, title: 'Technology Advisory Services', desc: 'Virtual CISO, Virtual CTO, managed IT, cloud and AI adoption — outcome-driven leadership.', to: '/services', accent: 'accent' },
-  ];
-
-  return (
-    <section className="section-home bg-section">
-      <div className="container-rq">
-        <SectionHeading
-          align="left"
-          eyebrow="What We Do"
-          title={<>One Partner. <span className="gradient-text">Multiple AI Solutions.</span></>}
-        />
-        <div className="mt-8 grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
-          {cards.map((c, i) => (
-            <PillarCard key={c.title} {...c} index={i} />
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function PillarCard({ icon: Icon, title, desc, to, accent, index }: any) {
-  const { ref, visible } = useReveal();
-  const { navigate } = useRoute();
-  return (
-    <div
-      ref={ref}
-      className={`group reveal reveal-delay-${index + 1} ${visible ? 'is-visible' : ''}`}
-    >
-      <button
-        onClick={() => navigate(to)}
-        className="flex h-full w-full flex-col items-start rounded-2xl border border-ink-200/70 bg-white p-6 text-left shadow-premium transition-all duration-300 hover:-translate-y-1.5 hover:shadow-premiumLg hover:border-brand-200"
-      >
-        <span className={`grid h-12 w-12 place-items-center rounded-xl ${accent === 'brand' ? 'bg-brand-50 text-brand-600' : 'bg-accent/20 text-ink-900'} transition-transform group-hover:scale-110`}>
-          <Icon size={22} />
-        </span>
-        <h3 className="mt-5 text-lg font-bold text-ink-900">{title}</h3>
-        <p className="mt-2 text-sm leading-relaxed text-ink-600">{desc}</p>
-        <span className="mt-5 flex items-center gap-1.5 text-sm font-semibold text-brand-600 transition-transform group-hover:translate-x-1">
-          Explore <ArrowRight size={14} />
-        </span>
-      </button>
+    <div className="bg-white text-[#0B1633]">
+      <HeroSection />
+      <WhatWeDoSection />
+      <InnovationLabSection />
+      <AgentsSection />
+      <FinalCtaSection />
     </div>
   );
 }
 
-function BusinessAreas() {
-  const areas = [
-    {
-      icon: Boxes, title: 'AI Enterprise SaaS Platforms', tag: 'Platforms',
-      items: ['AI Real Estate Platforms', 'Enterprise Workflow Platforms', 'Community Operations', 'Vendor Intelligence', 'Procurement Automation', 'Operational Analytics'],
-    },
-    {
-      icon: Workflow, title: 'AI Low-Code Platform', tag: 'Automation',
-      items: ['Drag and Drop Workflows', 'Dynamic Forms', 'Business Rules Engine', 'AI Workflow Automation', 'Approval Management', 'Process Orchestration'],
-    },
-    {
-      icon: ShieldCheck, title: 'Cybersecurity & GRC', tag: 'Security',
-      items: ['Cybersecurity Assessments', 'Governance Risk & Compliance', 'Security Architecture Reviews', 'Security Program Development', 'Third Party Risk Management', 'Compliance Readiness'],
-    },
-    {
-      icon: Briefcase, title: 'Virtual CISO', tag: 'Advisory',
-      items: ['Security Strategy', 'Roadmaps', 'Board Reporting', 'Compliance Programs', 'Vendor Risk Reviews', 'Incident Readiness'],
-    },
-    {
-      icon: Cpu, title: 'Virtual CTO', tag: 'Advisory',
-      items: ['Technology Strategy', 'Cloud Transformation', 'AI Adoption Roadmap', 'Product Architecture', 'Enterprise Modernization', 'Engineering Governance'],
-    },
-    {
-      icon: Network, title: 'Managed IT Services', tag: 'Operations',
-      items: ['IT Strategy', 'Cloud Consulting', 'Process Automation', 'Technology Assessments', 'Application Modernization', 'Digital Transformation'],
-    },
-  ];
+/* ─── HERO ─── */
+
+const HERO_FEATURES = [
+  { title: 'Enterprise Grade', desc: 'Secure. Scalable. Reliable.', icon: ShieldCheck },
+  { title: 'AI-Driven Innovation', desc: 'Smarter Outcomes, Faster', icon: BarChart3 },
+  { title: 'Trusted by Leaders', desc: 'Across Industries', icon: Users },
+] as const;
+
+const HERO_MARQUEE_PLATFORMS = [
+  'Requanto Audit AI',
+  'Requanto Vendor AI',
+  'Requanto Finance AI',
+  'Requanto Fraud AI',
+  'Requanto KYC AI',
+  'mySFT AI',
+  'Requanto Studio',
+  'Requanto Shield',
+  'Requanto Command',
+  'Requanto Risk AI',
+] as const;
+
+function HeroSection() {
+  const { navigate } = useRoute();
 
   return (
-    <section className="section-home">
-      <div className="container-rq">
-        <SectionHeading
-          align="left"
-          eyebrow="Business Areas"
-          title={<>Connected business areas, <span className="gradient-text">one AI backbone.</span></>}
-        />
-        <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-          {areas.map((a, i) => (
-            <BusinessAreaCard key={a.title} {...a} index={i} />
-          ))}
+    <section className="relative overflow-hidden bg-gray-100">
+      <HeroDecorations />
+
+      <div className="container-rq relative z-10 pt-8 pb-0 md:pt-10 lg:pt-12">
+        <div className="grid items-start gap-x-10 gap-y-0 lg:grid-cols-[50%_50%] xl:gap-x-14">
+          <div className="relative z-20 min-w-0 overflow-visible">
+            <div className="inline-flex items-center gap-2 rounded-full border border-[#E5E7EB] bg-white px-3.5 py-1.5 shadow-sm">
+              <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#FF6B00]" />
+              <span className="rq-section-badge">
+                AI-Powered. Outcome-Driven.
+              </span>
+            </div>
+
+            <h1 className="mt-5 text-3xl font-extrabold leading-[1.12] tracking-tight text-[#0B1633] sm:text-4xl lg:text-[2.65rem] lg:leading-[1.15] xl:text-[2.85rem]">
+              <span>Building </span>
+              <span className="text-[#FF6B00]">AI-Native</span>
+              <span> Enterprises.</span>
+            </h1>
+
+            <p className="rq-card-body mt-5 max-w-[520px]">
+              Requanto Technologies helps organizations modernize operations through AI-powered SaaS
+              platforms, low-code workflow automation, cybersecurity consulting, and managed technology
+              services.
+            </p>
+
+            <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center lg:flex-nowrap lg:gap-3.5">
+              <button
+                onClick={() => navigate('/contact#consultation')}
+                className="inline-flex h-[52px] shrink-0 items-center justify-center gap-2.5 rounded-xl bg-[#FF6B00] px-5 text-[15px] font-medium text-white shadow-[0_8px_24px_rgba(255,107,0,0.28)] transition-all hover:bg-[#E55D00] sm:px-6 sm:text-base"
+              >
+                <Play className="h-4 w-4 shrink-0 fill-white" />
+                Schedule Strategy Session
+              </button>
+              <button
+                onClick={() => navigate('/solutions')}
+                className="inline-flex h-[52px] shrink-0 items-center justify-center gap-2 rounded-xl border-2 border-[#FF6B00] bg-white px-5 text-[15px] font-medium text-[#FF6B00] transition-all hover:bg-[#FFF7F0] sm:px-6 sm:text-base"
+              >
+                <Sparkles className="h-4 w-4 shrink-0 text-[#FF6B00]" />
+                Explore AI Solutions
+              </button>
+            </div>
+
+            <HeroFeatureBar className="mt-5 lg:mt-6" />
+            <HeroPlatformMarquee />
+          </div>
+
+          <div className="relative z-0 flex min-h-[320px] w-full min-w-0 items-center justify-center overflow-visible bg-transparent py-6 sm:min-h-[400px] lg:min-h-[520px] lg:justify-end lg:self-center lg:py-0">
+            <img
+              src="/hero.webp"
+              alt="Requanto AI Platform with intelligence, automation, security, and cloud capabilities"
+              className="relative z-10 h-auto w-full max-w-[600px] translate-x-2 -translate-y-2 object-contain sm:max-w-[640px] lg:ml-auto lg:max-w-[720px] lg:translate-x-4 lg:-translate-y-4 xl:max-w-[780px]"
+              width={1040}
+              height={1200}
+            />
+          </div>
         </div>
       </div>
+
+      <HeroWaveFooter className="-mt-[45px]" />
     </section>
   );
 }
 
-function BusinessAreaCard({ icon: Icon, title, tag, items, index }: any) {
-  const { ref, visible } = useReveal();
+function HeroDecorations() {
   return (
-    <div ref={ref} className={`reveal reveal-delay-${index % 3 + 1} ${visible ? 'is-visible' : ''}`}>
-      <div className="group h-full rounded-2xl border border-ink-200/70 bg-white p-6 shadow-premium transition-all hover:shadow-premiumLg hover:-translate-y-1">
-        <div className="flex items-center justify-between">
-          <span className="grid h-11 w-11 place-items-center rounded-xl bg-ink-900 text-accent transition-transform group-hover:scale-110">
-            <Icon size={20} />
-          </span>
-          <span className="rounded-full bg-section px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-ink-500">{tag}</span>
+    <>
+      <div className="hero-checks-bg pointer-events-none absolute inset-0" />
+      <div className="pointer-events-none absolute bottom-0 right-0 h-[45%] w-[60%] opacity-40">
+        <svg className="h-full w-full" viewBox="0 0 800 500" preserveAspectRatio="xMaxYMax slice" aria-hidden>
+          <defs>
+            <linearGradient id="heroFlowA" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#1F9E69" stopOpacity="0.35" />
+              <stop offset="100%" stopColor="#0B1633" stopOpacity="0.05" />
+            </linearGradient>
+            <linearGradient id="heroFlowB" x1="100%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stopColor="#2DD4A0" stopOpacity="0.28" />
+              <stop offset="100%" stopColor="#1F9E69" stopOpacity="0.08" />
+            </linearGradient>
+          </defs>
+          <path d="M200 500 C350 380 420 280 520 200 C620 120 700 80 800 40" stroke="url(#heroFlowA)" strokeWidth="2" fill="none" />
+          <path d="M120 500 C280 400 380 300 500 220 C620 140 700 100 820 60" stroke="url(#heroFlowB)" strokeWidth="1.5" fill="none" opacity="0.7" />
+          <path d="M300 500 C400 420 460 340 540 260 C620 180 700 130 800 90" stroke="rgba(31,158,105,0.22)" strokeWidth="1" fill="none" strokeDasharray="6 8" />
+          <path d="M400 500 C480 420 520 360 580 300 C640 240 720 180 800 120" stroke="rgba(45,212,160,0.18)" strokeWidth="1" fill="none" />
+        </svg>
+      </div>
+    </>
+  );
+}
+
+function HeroFeatureBar({ className = '' }: { className?: string }) {
+  return (
+    <div className={`flex flex-col gap-5 sm:flex-row sm:items-center sm:gap-0 ${className}`}>
+      {HERO_FEATURES.map((item, i) => {
+        const Icon = item.icon;
+        return (
+          <div key={item.title} className="flex items-center">
+            {i > 0 && <span className="mx-5 hidden h-8 w-px shrink-0 bg-[#E5E7EB] sm:block lg:mx-7" aria-hidden />}
+            <div className="flex items-start gap-3">
+              <div className="grid h-12 w-12 shrink-0 place-items-center rounded-lg border border-[#EAEAEA] bg-[#FAFBFC] shadow-sm">
+                <Icon className="h-[22px] w-[22px] text-[#374151]" strokeWidth={1.5} />
+              </div>
+              <div>
+                <div className="rq-card-title text-[#0B1633]">{item.title}</div>
+                <div className="rq-card-body mt-1">{item.desc}</div>
+              </div>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+function HeroPlatformMarquee() {
+  const items = [...HERO_MARQUEE_PLATFORMS, ...HERO_MARQUEE_PLATFORMS];
+
+  return (
+    <div className="relative z-30 mt-5 w-full max-w-full border-t border-[#E5E7EB]/60 bg-gray-100 pt-3 lg:mt-6 lg:max-w-[calc(100%+10rem)] xl:max-w-[calc(100%+12rem)]">
+      <div className="hero-checks-bg pointer-events-none absolute inset-0 opacity-90" aria-hidden />
+      <div
+        className="relative h-7 overflow-hidden sm:h-8"
+        style={{
+          WebkitMaskImage: 'linear-gradient(to right, black 0%, black 88%, transparent 100%)',
+          maskImage: 'linear-gradient(to right, black 0%, black 88%, transparent 100%)',
+        }}
+      >
+        <div className="hero-marquee-track flex h-full w-max items-center gap-8 whitespace-nowrap sm:gap-10">
+          {items.map((name, i) => (
+            <span key={`${name}-${i}`} className="inline-flex items-center gap-8 sm:gap-10">
+              {i > 0 && <span className="h-3.5 w-px shrink-0 bg-[#94A3B8]/60" aria-hidden />}
+              <span className="rq-card-body inline-block leading-none tracking-[-0.01em]">
+                {name}
+              </span>
+            </span>
+          ))}
         </div>
-        <h3 className="mt-5 text-base font-bold text-ink-900">{title}</h3>
-        <ul className="mt-4 space-y-2">
-          {items.map((item: string) => (
-            <li key={item} className="flex items-start gap-2 text-sm text-ink-600">
-              <CheckCircle2 size={14} className="mt-0.5 shrink-0 text-success" />
-              {item}
+      </div>
+    </div>
+  );
+}
+
+function HeroWaveFooter({ className = '' }: { className?: string }) {
+  /* Reference curve: flat left (0%) → ~30% depth on right, smooth S-shape */
+  const curve =
+    'M0,78 C220,78 480,62 820,38 C1040,22 1240,10 1440,6 L1440,108 L0,108 Z';
+  const curveLine =
+    'M0,78 C220,78 480,62 820,38 C1040,22 1240,10 1440,6';
+
+  return (
+    <div className={`relative ${className}`}>
+      <svg viewBox="0 0 1440 108" className="block w-full" preserveAspectRatio="none" aria-hidden>
+        <defs>
+          <linearGradient id="heroWaveFill" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#1a4d38" />
+            <stop offset="50%" stopColor="#214635" />
+            <stop offset="100%" stopColor="#163528" />
+          </linearGradient>
+          <linearGradient id="heroGoldLine" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#B8942E" stopOpacity="0.2" />
+            <stop offset="40%" stopColor="#D4AF37" stopOpacity="0.65" />
+            <stop offset="75%" stopColor="#F0D875" stopOpacity="1" />
+            <stop offset="100%" stopColor="#E8C547" />
+          </linearGradient>
+          <filter id="heroGoldGlow" x="-10%" y="-50%" width="120%" height="200%">
+            <feGaussianBlur stdDeviation="4" result="blur" />
+            <feMerge>
+              <feMergeNode in="blur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+        </defs>
+
+        {/* Cropped viewBox — no empty white band above the curve */}
+        <path d={curve} fill="url(#heroWaveFill)" />
+
+        {/* Soft gold glow under the accent line */}
+        <path
+          d={curveLine}
+          fill="none"
+          stroke="#E8C547"
+          strokeWidth="7"
+          opacity="0.22"
+          strokeLinecap="round"
+        />
+        <path
+          d={curveLine}
+          fill="none"
+          stroke="url(#heroGoldLine)"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+          filter="url(#heroGoldGlow)"
+        />
+        <path
+          d={curveLine}
+          fill="none"
+          stroke="#FFF8DC"
+          strokeWidth="1"
+          opacity="0.5"
+          strokeLinecap="round"
+          transform="translate(0,-2)"
+        />
+
+        {/* Center of gold border at viewBox x=720, y≈44 */}
+        <foreignObject x="520" y="54" width="400" height="52">
+          <div className="flex h-full w-full flex-col items-center justify-center gap-1 text-center">
+            <span className="text-xs font-medium uppercase tracking-[0.24em] text-white/60">
+              Scroll to explore
+            </span>
+            <ChevronDown className="h-4 w-4 animate-bounce text-[#E8C547]/90" strokeWidth={2} />
+          </div>
+        </foreignObject>
+      </svg>
+    </div>
+  );
+}
+
+/* ─── WHAT WE DO ─── */
+
+const ECOSYSTEM_LEFT = [
+  {
+    icon: Boxes,
+    title: 'AI Enterprise SaaS',
+    bullets: ['Community Operations', 'Vendor Intelligence', 'Procurement Automation'],
+    lineY: 18,
+  },
+  {
+    icon: Workflow,
+    title: 'AI Low-Code',
+    bullets: ['Drag-and-drop workflows', 'Dynamic forms', 'Business rules engine'],
+    lineY: 50,
+  },
+  {
+    icon: ShieldCheck,
+    title: 'Cybersecurity',
+    bullets: ['Cybersecurity Assessments', 'Governance Risk & Compliance', 'Security Program Development'],
+    lineY: 82,
+  },
+] as const;
+
+const ECOSYSTEM_RIGHT = [
+  {
+    icon: Layers3,
+    title: 'Virtual CTO',
+    bullets: ['Technology strategy', 'Product architecture', 'Cloud transformation', 'AI adoption roadmap'],
+    lineY: 18,
+  },
+  {
+    icon: Cloud,
+    title: 'Managed IT & Technology',
+    bullets: ['IT strategy', 'Cloud consulting', 'Process automation'],
+    lineY: 50,
+  },
+  {
+    icon: User,
+    title: 'Virtual CISO',
+    bullets: ['Executive security leadership', 'Risk & compliance oversight', 'Security program management'],
+    lineY: 82,
+  },
+] as const;
+
+
+
+function WhatWeDoBackground() {
+  return (
+    <>
+      <div className="pointer-events-none absolute inset-0 bg-white" />
+      <div className="hero-checks-bg pointer-events-none absolute inset-0 opacity-[0.28]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_55%_45%_at_50%_20%,rgba(31,158,105,0.05),transparent_60%)]" />
+      <svg
+        className="pointer-events-none absolute left-0 top-8 h-32 w-48 opacity-40 md:h-40 md:w-64"
+        viewBox="0 0 200 120"
+        fill="none"
+        aria-hidden
+      >
+        <path
+          d="M0 80 C40 40 80 20 120 30 C150 38 175 55 200 70"
+          stroke="#FF6B00"
+          strokeWidth="1.5"
+          strokeOpacity="0.35"
+        />
+        <path
+          d="M0 95 C50 60 90 45 140 55 C165 60 185 72 200 85"
+          stroke="#FF6B00"
+          strokeWidth="1"
+          strokeOpacity="0.2"
+        />
+      </svg>
+      <svg
+        className="pointer-events-none absolute right-0 top-8 h-32 w-48 opacity-40 md:h-40 md:w-64"
+        viewBox="0 0 200 120"
+        fill="none"
+        aria-hidden
+      >
+        <path
+          d="M200 80 C160 40 120 20 80 30 C50 38 25 55 0 70"
+          stroke="#FF6B00"
+          strokeWidth="1.5"
+          strokeOpacity="0.35"
+        />
+        <path
+          d="M200 95 C150 60 110 45 60 55 C35 60 15 72 0 85"
+          stroke="#FF6B00"
+          strokeWidth="1"
+          strokeOpacity="0.2"
+        />
+      </svg>
+    </>
+  );
+}
+
+const ECOSYSTEM_CARD_STYLES = [
+  {
+    card: 'border-2 border-[#163F35]/65 bg-[#F7FBF9] shadow-[0_8px_28px_rgba(22,63,53,0.14)] ring-1 ring-[#163F35]/10',
+    icon: 'border-[#163F35]/30 bg-[#EEF6F2] text-[#163F35]',
+    bullet: 'bg-[#163F35]',
+  },
+  {
+    card: 'border-2 border-[#1A6B8A]/60 bg-[#F5FAFC] shadow-[0_8px_28px_rgba(26,107,138,0.12)] ring-1 ring-[#1A6B8A]/10',
+    icon: 'border-[#1A6B8A]/30 bg-[#E8F4F8] text-[#1A6B8A]',
+    bullet: 'bg-[#1A6B8A]',
+  },
+  {
+    card: 'border-2 border-[#2D7A5E]/60 bg-[#F4FAF7] shadow-[0_8px_28px_rgba(45,122,94,0.12)] ring-1 ring-[#2D7A5E]/10',
+    icon: 'border-[#2D7A5E]/30 bg-[#EAF5EF] text-[#2D7A5E]',
+    bullet: 'bg-[#2D7A5E]',
+  },
+] as const;
+
+function EcosystemNodeCard({
+  icon: Icon,
+  title,
+  bullets,
+  style,
+}: {
+  icon: typeof BarChart3;
+  title: string;
+  bullets: readonly string[];
+  style: (typeof ECOSYSTEM_CARD_STYLES)[number];
+}) {
+  return (
+    <div
+      className={`flex h-full w-full min-h-[130px] items-start gap-4 rounded-2xl px-5 py-4 backdrop-blur-sm sm:min-h-[140px] sm:px-5 sm:py-5 ${style.card}`}
+    >
+      <div className={`grid h-12 w-12 shrink-0 place-items-center rounded-lg border ${style.icon}`}>
+        <Icon className="h-[22px] w-[22px]" strokeWidth={1.5} />
+      </div>
+      <div className="min-w-0 flex-1">
+        <div className="rq-card-title">{title}</div>
+        <ul className="mt-2.5 space-y-1.5">
+          {bullets.map((item) => (
+            <li key={item} className="rq-card-body flex items-start gap-2">
+              <span className={`mt-2 h-1.5 w-1.5 shrink-0 rounded-full ${style.bullet}`} />
+              <span>{item}</span>
             </li>
           ))}
         </ul>
@@ -238,113 +431,269 @@ function BusinessAreaCard({ icon: Icon, title, tag, items, index }: any) {
   );
 }
 
-function PlatformEcosystem() {
-  const { ref, visible } = useReveal();
+function EcosystemDiagram() {
+  const hubX = 50;
+  const hubY = 50;
+  const leftX = 14;
+  const rightX = 86;
+  const connectors = [
+    ...ECOSYSTEM_LEFT.map((n) => ({ x: leftX, y: n.lineY })),
+    ...ECOSYSTEM_RIGHT.map((n) => ({ x: rightX, y: n.lineY })),
+  ];
+
   return (
-    <section className="section-home relative overflow-hidden bg-[#2E2E38] text-white">
-      <div className="absolute inset-0 dot-bg opacity-[0.06]" />
-      <div className="absolute left-1/2 top-1/2 h-[640px] w-[640px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent/10 blur-3xl" />
-      <div className="absolute -right-24 top-10 h-64 w-64 rounded-full bg-white/5 blur-3xl" />
+    <div className="relative mx-auto w-full max-w-[1100px]">
+      <div className="relative grid grid-cols-[1fr_auto_1fr] grid-rows-3 items-stretch gap-x-4 gap-y-4 sm:gap-x-6 sm:gap-y-5 md:gap-x-10 md:gap-y-5">
+        <svg
+          className="pointer-events-none absolute inset-0 h-full w-full"
+          viewBox="0 0 100 100"
+          preserveAspectRatio="none"
+          aria-hidden
+        >
+          {connectors.map((point, i) => (
+            <line
+              key={i}
+              x1={point.x}
+              y1={point.y}
+              x2={hubX}
+              y2={hubY}
+              stroke="#FF6B00"
+              strokeWidth="0.45"
+              strokeDasharray="1.8 1.8"
+              strokeOpacity="0.55"
+            />
+          ))}
+          <circle cx={hubX} cy={hubY} r="0.8" fill="#FF6B00" opacity="0.85" />
+        </svg>
 
-      <div className="container-rq relative">
-        <SectionHeading
-          align="left"
-          theme="dark"
-          eyebrow="Platform Ecosystem"
-          title={<>A connected <span className="gradient-text-accent">architecture</span> across industries.</>}
-        />
+        {ECOSYSTEM_LEFT.map((node, i) => (
+          <div
+            key={node.title}
+            className="relative z-10 col-start-1 flex min-w-0 w-full max-w-[360px] justify-self-stretch"
+            style={{ gridRow: i + 1 }}
+          >
+            <EcosystemNodeCard
+              icon={node.icon}
+              title={node.title}
+              bullets={node.bullets}
+              style={ECOSYSTEM_CARD_STYLES[i]}
+            />
+          </div>
+        ))}
 
-        <div ref={ref} className={`reveal mt-8 ${visible ? 'is-visible' : ''}`}>
-          <div className="relative mx-auto max-w-5xl overflow-hidden rounded-3xl border border-white/10 bg-white/[0.04] p-4 shadow-premiumLg backdrop-blur sm:p-6">
-            <div className="grid gap-5">
-              <div className="grid place-items-center">
-                <EcosystemDiagram />
+        <div className="relative z-10 col-start-2 row-span-3 row-start-1 flex items-center justify-center self-center px-2">
+          <div className="relative flex h-[7.5rem] w-[7.5rem] flex-col items-center justify-center rounded-full bg-gradient-to-br from-[#1a4a3e] via-[#214635] to-[#0d1f17] text-center shadow-[0_0_48px_rgba(31,158,105,0.28)] sm:h-36 sm:w-36 md:h-40 md:w-40">
+            <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle_at_35%_30%,rgba(61,214,140,0.2),transparent_55%)]" />
+            <div className="relative flex flex-col items-center justify-center gap-2 px-3">
+              <div className="grid place-items-center rounded-xl bg-white p-2 shadow-[0_4px_16px_rgba(0,0,0,0.15)] ring-1 ring-white/30">
+                <img
+                  src="/favicon.png"
+                  alt="Requanto"
+                  className="h-8 w-8 object-contain sm:h-9 sm:w-9 md:h-10 md:w-10"
+                />
               </div>
-              <div className="grid gap-3 sm:grid-cols-2">
-                <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
-                  <div className="text-[11px] font-semibold uppercase tracking-[0.14em] text-white/55">Core Layer</div>
-                  <div className="mt-2 text-sm font-semibold text-white">Requanto Platform Hub</div>
-                  <p className="mt-1 text-sm text-white/70">Central governance, AI orchestration, and operational visibility.</p>
-                </div>
-                <div className="rounded-2xl border border-accent/30 bg-accent/10 p-4">
-                  <div className="text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">Connected Outcomes</div>
-                  <div className="mt-2 text-sm font-semibold text-white">Industry + Platform Synchronization</div>
-                  <p className="mt-1 text-sm text-white/75">Signals flow across products and industries for faster decisions.</p>
-                </div>
-              </div>
+              <span className="text-sm font-medium leading-tight text-white sm:text-[15px] md:text-base">
+                Requanto
+                <br />
+                Ecosystem
+              </span>
             </div>
           </div>
+        </div>
+
+        {ECOSYSTEM_RIGHT.map((node, i) => (
+          <div
+            key={`${node.title}-${i}`}
+            className="relative z-10 col-start-3 flex min-w-0 w-full max-w-[360px] justify-self-stretch"
+            style={{ gridRow: i + 1 }}
+          >
+            <EcosystemNodeCard
+              icon={node.icon}
+              title={node.title}
+              bullets={node.bullets}
+              style={ECOSYSTEM_CARD_STYLES[i]}
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+
+
+function WhatWeDoSection() {
+  const { ref, inView } = useInView();
+
+  return (
+    <section ref={ref} className="relative overflow-hidden home-section-pad bg-white">
+      <WhatWeDoBackground />
+
+      <div className="container-rq relative z-10">
+        <div className="mx-auto max-w-[720px] text-center">
+          <div className="inline-flex items-center gap-2 rounded-full border border-[#E5E7EB] bg-white px-3.5 py-1.5 shadow-sm">
+            <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#FF6B00]" />
+            <span className="rq-section-badge">
+              What We Do
+            </span>
+          </div>
+          <h2 className="mt-4 text-3xl font-extrabold tracking-tight text-[#0B1633] md:text-4xl lg:text-[2.65rem] lg:leading-[1.15]">
+            One Partner. Multiple <span className="text-[#FF6B00]">AI Solutions</span>.
+          </h2>
+          {/* <p className="mt-4 text-base leading-relaxed text-[#52627D] md:text-[17px] md:leading-[1.7]">
+            We help businesses solve real operational challenges by combining enterprise software, artificial
+            intelligence, cybersecurity, and strategic consultancy.
+          </p> */}
+        </div>
+
+        <div
+          className={`section-block-gap transition-all duration-700 ${inView ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'}`}
+        >
+          <EcosystemDiagram />
         </div>
       </div>
     </section>
   );
 }
 
-function EcosystemDiagram() {
-  const platformCount = PLATFORMS.length;
+/* ─── INNOVATION LAB ─── */
+
+const INNOVATION_VALUE_BLOCKS = [
+  {
+    icon: Target,
+    title: 'Real Business Problems',
+    text: 'We solve operational challenges first.',
+  },
+  {
+    icon: Sparkles,
+    title: 'AI-Powered Solutions',
+    text: 'Practical enterprise automation.',
+  },
+  {
+    icon: BarChart3,
+    title: 'Measurable Outcomes',
+    text: 'Delivering ROI through AI.',
+  },
+  {
+    icon: ShieldCheck,
+    title: 'Enterprise Ready',
+    text: 'Secure, scalable and compliant.',
+  },
+] as const;
+
+const INNOVATION_INDUSTRIES = [
+  {
+    id: 'realestate',
+    title: 'AI for Real Estate',
+    icon: Building2,
+    image: '/real-state.png',
+    banner: 'from-[#163F35] via-[#1a4a3e] to-[#214635]',
+    problems: ['Slow sales cycles', 'Manual vendor management'],
+    solutions: ['Lead prediction', 'Vendor intelligence', 'Service automation'],
+    to: '/innovation-lab#realestate',
+  },
+  {
+    id: 'healthcare',
+    title: 'AI for Healthcare',
+    icon: Activity,
+    image: '/hospital.png',
+    banner: 'from-[#0f2d3d] via-[#163F35] to-[#1a4a3e]',
+    problems: ['Administrative burden', 'Compliance complexity'],
+    solutions: ['Document intelligence', 'Workflow automation', 'Compliance monitoring'],
+    to: '/innovation-lab#healthcare',
+  },
+  {
+    id: 'manufacturing',
+    title: 'AI for Manufacturing',
+    icon: Factory,
+    image: '/manufraturing.png',
+    banner: 'from-[#1a3a32] via-[#163F35] to-[#0d2420]',
+    problems: ['Procurement delays', 'Vendor inefficiencies'],
+    solutions: ['Predictive procurement', 'Supplier intelligence', 'Operational analytics'],
+    to: '/innovation-lab#manufacturing',
+  },
+  {
+    id: 'financial',
+    title: 'AI for Financial Services',
+    icon: Banknote,
+    image: '/frelance.png',
+    banner: 'from-[#111827] via-[#163F35] to-[#214635]',
+    problems: ['Regulatory complexity', 'Operational risk'],
+    solutions: ['Risk intelligence', 'Audit automation', 'Compliance workflows'],
+    to: '/innovation-lab#financial',
+  },
+  {
+    id: 'smart',
+    title: 'AI for Smart Communities',
+    icon: Network,
+    image: '/ai-smartcommunity.png',
+    banner: 'from-[#163528] via-[#163F35] to-[#1f6b52]',
+    problems: ['Resident complaints', 'Manual service management'],
+    solutions: ['Resident Copilot', 'Visitor intelligence', 'Maintenance automation'],
+    to: '/innovation-lab#smart',
+  },
+] as const;
+
+const INNOVATION_CARD_ACCENTS = [
+  { problems: 'text-[#163F35]', problemDot: 'bg-[#163F35]', cta: 'text-[#163F35] hover:text-[#1E5A4A]' },
+  { problems: 'text-[#1A6B8A]', problemDot: 'bg-[#1A6B8A]', cta: 'text-[#1A6B8A] hover:text-[#155A73]' },
+  { problems: 'text-[#FF6B00]', problemDot: 'bg-[#FF6B00]', cta: 'text-[#FF6B00] hover:text-[#E55D00]' },
+  { problems: 'text-[#5B4BB7]', problemDot: 'bg-[#5B4BB7]', cta: 'text-[#5B4BB7] hover:text-[#4A3D9A]' },
+  { problems: 'text-[#2D7A5E]', problemDot: 'bg-[#2D7A5E]', cta: 'text-[#2D7A5E] hover:text-[#236349]' },
+] as const;
+
+function InnovationLabBackground() {
+  const particles = [
+    { left: '6%', top: '14%', delay: '0s' },
+    { left: '94%', top: '18%', delay: '1.5s' },
+    { left: '12%', top: '78%', delay: '2.8s' },
+    { left: '88%', top: '72%', delay: '0.6s' },
+  ];
+
   return (
-    <div className="relative aspect-square w-full max-w-[min(640px,90vw)]">
-      <div className="absolute inset-0 grid place-items-center">
-        <div className="absolute h-full w-full rounded-full border border-white/10" />
-        <div className="absolute h-[72%] w-[72%] rounded-full border border-white/10" />
-        <div className="absolute h-[44%] w-[44%] rounded-full border border-white/10" />
-        <div className="absolute h-[72%] w-[72%] rounded-full border border-dashed border-accent/30 animate-[orbit-slow_70s_linear_infinite]" />
-      </div>
-
-      <svg className="absolute inset-0 h-full w-full" viewBox="0 0 100 100" fill="none" aria-hidden>
-        {PLATFORMS.map((_, i) => {
-          const radius = 50;
-          const angle = (i / platformCount) * 360;
-          const x = 50 + (radius * 0.5) * Math.cos((angle * Math.PI) / 180);
-          const y = 50 + (radius * 0.5) * Math.sin((angle * Math.PI) / 180);
-          return <line key={i} x1="50" y1="50" x2={x} y2={y} stroke="rgba(255,230,0,0.18)" strokeWidth="0.3" strokeDasharray="1 1.5" />;
-        })}
-        {INDUSTRIES_PLATFORM.map((_, i) => {
-          const radius = 50;
-          const angle = (i / INDUSTRIES_PLATFORM.length) * 360;
-          const x = 50 + radius * Math.cos((angle * Math.PI) / 180);
-          const y = 50 + radius * Math.sin((angle * Math.PI) / 180);
-          return <line key={i} x1="50" y1="50" x2={x} y2={y} stroke="rgba(255,230,0,0.12)" strokeWidth="0.3" />;
-        })}
+    <>
+      <div className="pointer-events-none absolute inset-0 bg-white" />
+      <div className="dot-bg pointer-events-none absolute inset-0 opacity-[0.35]" />
+      <div className="hero-mesh pointer-events-none absolute inset-0 opacity-25" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_50%_0%,rgba(22,63,53,0.04),transparent_55%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_40%_35%_at_90%_90%,rgba(255,107,0,0.04),transparent_60%)]" />
+      {particles.map((p, i) => (
+        <span
+          key={i}
+          className={`what-we-do-particle pointer-events-none absolute h-1 w-1 rounded-full ${i % 2 === 0 ? 'bg-[#163F35]/40' : 'bg-[#FF6B00]/35'}`}
+          style={{ left: p.left, top: p.top, animationDelay: p.delay }}
+          aria-hidden
+        />
+      ))}
+      <svg className="pointer-events-none absolute left-0 top-16 h-40 w-56 opacity-35" viewBox="0 0 200 120" fill="none" aria-hidden>
+        <path d="M0 90 C50 50 90 30 140 45 C170 55 190 70 200 85" stroke="#163F35" strokeWidth="1.5" strokeOpacity="0.25" />
       </svg>
+      <svg className="pointer-events-none absolute right-0 top-20 h-40 w-56 opacity-35" viewBox="0 0 200 120" fill="none" aria-hidden>
+        <path d="M200 90 C150 50 110 30 60 45 C30 55 10 70 0 85" stroke="#FF6B00" strokeWidth="1.5" strokeOpacity="0.25" />
+      </svg>
+    </>
+  );
+}
 
-      {/* center hub */}
-      <div className="absolute inset-0 grid place-items-center">
-        <div className="relative grid h-28 w-28 place-items-center rounded-full bg-ink-900 text-white shadow-premiumLg ring-1 ring-accent/30">
-          <div className="absolute -inset-3 rounded-full bg-accent/20 blur-xl animate-pulseGlow" />
-          <div className="relative flex flex-col items-center">
-            <Network size={22} className="text-accent" />
-            <span className="mt-1 text-xs font-bold">Requanto</span>
-            <span className="text-[9px] uppercase tracking-[0.16em] text-ink-400">Technologies</span>
-          </div>
-        </div>
-      </div>
-
-      {/* platforms ring */}
-      {PLATFORMS.map((p, i) => {
-        const radius = 50;
-        const angle = (i / platformCount) * 360 - 90;
-        const x = 50 + (radius * 0.5) * Math.cos((angle * Math.PI) / 180);
-        const y = 50 + (radius * 0.5) * Math.sin((angle * Math.PI) / 180);
+function InnovationValueBar() {
+  return (
+    <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4">
+      {INNOVATION_VALUE_BLOCKS.map((block, i) => {
+        const Icon = block.icon;
         return (
-          <div key={p} className="absolute -translate-x-1/2 -translate-y-1/2" style={{ left: `${x}%`, top: `${y}%` }}>
-            <div className="flex max-w-[5.5rem] items-center gap-1 rounded-lg border border-white/15 bg-white/[0.06] px-1.5 py-1 text-[8px] font-medium leading-tight text-white backdrop-blur-sm sm:max-w-none sm:gap-1.5 sm:px-2.5 sm:py-1.5 sm:text-[10px]">
-              <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
-              <span className="truncate">{p}</span>
+          <div key={block.title} className="relative flex items-start gap-4 px-5 py-7 sm:px-6 md:py-8">
+            {i > 0 && (
+              <span
+                className="absolute left-0 top-1/2 hidden h-14 w-px -translate-y-1/2 bg-[#E7ECF3] sm:block"
+                aria-hidden
+              />
+            )}
+            <div className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl border border-[#E7ECF3] bg-[#FAFBFC] text-[#163F35] shadow-sm">
+              <Icon className="h-[22px] w-[22px]" strokeWidth={1.5} />
             </div>
-          </div>
-        );
-      })}
-
-      {/* industries ring */}
-      {INDUSTRIES_PLATFORM.map((ind, i) => {
-        const angle = (i / INDUSTRIES_PLATFORM.length) * 360 - 90;
-        const x = 50 + 50 * Math.cos((angle * Math.PI) / 180);
-        const y = 50 + 50 * Math.sin((angle * Math.PI) / 180);
-        return (
-          <div key={ind} className="absolute -translate-x-1/2 -translate-y-1/2" style={{ left: `${x}%`, top: `${y}%` }}>
-            <div className="rounded-full border border-accent/30 bg-ink-900/60 px-2.5 py-1 text-[9px] font-semibold uppercase tracking-wide text-accent backdrop-blur-sm">
-              {ind}
+            <div>
+              <div className="rq-card-title">{block.title}</div>
+              <p className="rq-card-body mt-1.5">{block.text}</p>
             </div>
           </div>
         );
@@ -353,168 +702,689 @@ function EcosystemDiagram() {
   );
 }
 
-function InnovationLab() {
-  const labs = [
-    { industry: 'Real Estate', icon: Building2, problems: ['Slow Sales Cycles', 'Manual Vendor Management', 'Poor Operational Visibility'], solutions: ['Lead Prediction', 'Vendor Intelligence', 'Service Automation', 'Resident AI Assistant'] },
-    { industry: 'Healthcare', icon: Activity, problems: ['Administrative Burden', 'Compliance Complexity'], solutions: ['Document Intelligence', 'Workflow Automation', 'Compliance Monitoring'] },
-    { industry: 'Manufacturing', icon: Cpu, problems: ['Procurement Delays', 'Vendor Inefficiencies'], solutions: ['Predictive Procurement', 'Supplier Intelligence', 'Operational Analytics'] },
-    { industry: 'Financial Services', icon: TrendingUp, problems: ['Regulatory Complexity', 'Operational Risk'], solutions: ['Risk Intelligence', 'Audit Automation', 'Compliance Workflows'] },
-    { industry: 'Smart Communities', icon: Network, problems: ['Resident Complaints', 'Manual Service Management'], solutions: ['Resident Copilot', 'Visitor Intelligence', 'AI Maintenance Ops'] },
-  ];
-
-  const { navigate } = useRoute();
-
+function InnovationIndustryCard({
+  title,
+  icon: _icon,
+  image,
+  banner,
+  problems,
+  solutions,
+  to,
+  onNavigate,
+  delay,
+  inView,
+  accent,
+}: {
+  title: string;
+  icon: typeof Building2;
+  image?: string;
+  banner: string;
+  problems: readonly string[];
+  solutions: readonly string[];
+  to: string;
+  onNavigate: (to: string) => void;
+  delay: number;
+  inView: boolean;
+  accent: (typeof INNOVATION_CARD_ACCENTS)[number];
+}) {
   return (
-    <section className="section-home bg-section">
-      <div className="container-rq">
-        <SectionHeading
-          align="left"
-          eyebrow="AI Innovation Lab"
-          title={<>Solving real <span className="gradient-text">business problems</span> with AI.</>}
-          cta={{ label: 'Explore the Lab', to: '/innovation-lab' }}
-        />
-        <div className="mt-8 grid gap-5 lg:grid-cols-2">
-          {labs.map((l, i) => (
-            <InnovationCard key={l.industry} {...l} index={i} />
-          ))}
+    <article
+      className={`group flex h-[400px] flex-col overflow-hidden rounded-2xl border border-[#E7ECF3] bg-white shadow-[0_4px_24px_rgba(17,24,39,0.06)] transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_16px_40px_rgba(17,24,39,0.09)] sm:h-[420px] ${inView ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'}`}
+      style={{ transitionDelay: inView ? `${delay}ms` : '0ms' }}
+    >
+      <div
+        className={`relative h-[118px] shrink-0 overflow-hidden rounded-t-2xl border-b border-[#E7ECF3] bg-gradient-to-br ${banner}`}
+      >
+        {image ? (
+          <img
+            src={image}
+            alt=""
+            className="innovation-card-zoom absolute inset-0 h-full w-full rounded-t-2xl object-cover"
+          />
+        ) : (
+          <div className="innovation-card-zoom absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.06)_1px,transparent_1px)] bg-[size:32px_32px]" />
+        )}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#111827]/60 via-[#111827]/15 to-transparent" />
+      </div>
+
+      <div className="flex min-h-0 flex-1 flex-col px-4 pb-3 pt-4 sm:px-5 sm:pb-4 sm:pt-4">
+        <h3 className="rq-card-title shrink-0">{title}</h3>
+
+        <div className="mt-2.5 min-h-0 flex-1 space-y-2.5 overflow-hidden sm:mt-3 sm:space-y-3">
+          <div>
+            <span className={`rq-card-label ${accent.problems}`}>Problems</span>
+            <ul className="mt-1 space-y-1">
+              {problems.map((item) => (
+                <li key={item} className="rq-card-body flex items-start gap-2 text-[#0B1633]">
+                  <span className={`mt-2 h-1.5 w-1.5 shrink-0 rounded-full ${accent.problemDot}`} aria-hidden />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <span className="rq-card-label text-[#163F35]">AI Solutions</span>
+            <ul className="mt-1 space-y-1">
+              {solutions.map((item) => (
+                <li key={item} className="rq-card-body flex items-start gap-2">
+                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#163F35]" aria-hidden />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <div className="mt-2 shrink-0 border-t border-[#E7ECF3] pt-2.5">
           <button
-            onClick={() => navigate('/innovation-lab')}
-            className="group flex flex-col items-start justify-center rounded-2xl border-2 border-dashed border-ink-300 bg-white/50 p-6 text-left transition-all hover:border-brand-300 hover:bg-white"
+            type="button"
+            onClick={() => onNavigate(to)}
+            className={`inline-flex w-full items-center gap-2 text-[15px] font-medium transition-colors sm:text-base ${accent.cta}`}
           >
-            <span className="grid h-11 w-11 place-items-center rounded-xl bg-ink-900 text-accent">
-              <Sparkles size={20} />
-            </span>
-            <h3 className="mt-4 text-lg font-bold text-ink-900">See all innovation tracks</h3>
-            <p className="mt-1 text-sm text-ink-600">Explore every industry AI solution from our lab.</p>
-            <span className="mt-4 flex items-center gap-1.5 text-sm font-semibold text-brand-600">
-              Explore <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
-            </span>
+            Learn More
+            <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
           </button>
         </div>
       </div>
-    </section>
+    </article>
   );
 }
 
-function InnovationCard({ industry, icon: Icon, problems, solutions, index }: any) {
-  const { ref, visible } = useReveal();
-  return (
-    <div ref={ref} className={`reveal reveal-delay-${index % 2 + 1} ${visible ? 'is-visible' : ''}`}>
-      <div className="group h-full rounded-2xl border border-ink-200/70 bg-white p-6 shadow-premium transition-all hover:shadow-premiumLg">
-        <div className="flex items-center gap-3 border-b border-ink-100 pb-4">
-          <span className="grid h-11 w-11 place-items-center rounded-xl bg-brand-50 text-brand-600">
-            <Icon size={20} />
-          </span>
-          <h3 className="text-lg font-bold text-ink-900">AI for {industry}</h3>
-        </div>
-        <div className="mt-4 grid gap-4 sm:grid-cols-2">
-          <div>
-            <div className="mb-2 text-[11px] font-semibold uppercase tracking-[0.12em] text-danger">Problems</div>
-            <ul className="space-y-1.5">
-              {problems.map((p: string) => (
-                <li key={p} className="flex items-start gap-2 text-sm text-ink-600">
-                  <span className="mt-1.5 h-1 w-1 rounded-full bg-danger" />
-                  {p}
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <div className="mb-2 text-[11px] font-semibold uppercase tracking-[0.12em] text-success">AI Solutions</div>
-            <ul className="space-y-1.5">
-              {solutions.map((s: string) => (
-                <li key={s} className="flex items-start gap-2 text-sm font-medium text-ink-800">
-                  <Zap size={13} className="mt-0.5 text-success" />
-                  {s}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function AgentsPreview() {
-  const preview = AGENTS.slice(0, 6);
+function InnovationLabSection() {
   const { navigate } = useRoute();
+  const { ref, inView } = useInView();
+
   return (
-    <section className="section-home">
-      <div className="container-rq">
-        <SectionHeading
-          align="left"
-          eyebrow="AI Agents Marketplace"
-          title={<>A marketplace of <span className="gradient-text">specialized AI agents.</span></>}
-          cta={{ label: 'Browse all agents', to: '/agents' }}
-        />
-        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {preview.map((a, i) => (
-            <AgentPreviewCard key={a.name} agent={a} index={i} onSelect={() => navigate('/agents')} />
+    <section ref={ref} className="relative overflow-hidden home-section-pad bg-white">
+      <InnovationLabBackground />
+
+      <div className="container-rq relative z-10">
+        <div
+          className={`mx-auto max-w-[850px] text-center transition-all duration-700 ${inView ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'}`}
+        >
+          <div className="inline-flex items-center gap-2 rounded-full border border-[#E5E7EB] bg-white px-3.5 py-1.5 shadow-sm">
+            <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#FF6B00]" />
+            <span className="rq-section-badge">
+              AI INNOVATION LAB
+            </span>
+          </div>
+          <h2 className="mt-4 text-3xl font-extrabold tracking-tight text-[#0B1633] md:text-4xl lg:text-[2.65rem] lg:leading-[1.15]">
+            Solving Real Business Problems with <span className="text-[#FF6B00]">AI</span>
+          </h2>
+          {/* <p className="mt-4 text-base leading-relaxed text-[#52627D] md:text-[17px] md:leading-[1.7]">
+            Instead of selling AI, we solve measurable business problems with intelligent enterprise solutions
+            built for real-world operations.
+          </p> */}
+        </div>
+
+        <div
+          className={`section-block-gap transition-all duration-700 ${inView ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'}`}
+          style={{ transitionDelay: inView ? '80ms' : '0ms' }}
+        >
+          <InnovationValueBar />
+        </div>
+
+        <div className="section-block-gap grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-5">
+          {INNOVATION_INDUSTRIES.map((industry, i) => (
+            <InnovationIndustryCard
+              key={industry.id}
+              {...industry}
+              accent={INNOVATION_CARD_ACCENTS[i]}
+              onNavigate={navigate}
+              delay={160 + i * 90}
+              inView={inView}
+            />
           ))}
         </div>
-      </div>
-    </section>
-  );
-}
 
-function AgentPreviewCard({
-  agent,
-  index,
-  onSelect,
-}: {
-  agent: (typeof AGENTS)[number];
-  index: number;
-  onSelect: () => void;
-}) {
-  const { ref, visible } = useReveal();
-  return (
-    <div ref={ref} className={`reveal reveal-delay-${index % 3 + 1} ${visible ? 'is-visible' : ''}`}>
-      <button onClick={onSelect} className="group flex h-full w-full flex-col items-start rounded-2xl border border-ink-200/70 bg-white p-5 text-left shadow-premium transition-all hover:-translate-y-1 hover:shadow-premiumLg">
-        <div className="flex w-full items-center justify-between">
-          <span className="grid h-10 w-10 place-items-center rounded-xl bg-ink-900 text-accent">
-            <agent.icon size={18} />
-          </span>
-          <span className="rounded-full bg-section px-2.5 py-1 text-[10px] font-semibold text-ink-500">{agent.category}</span>
-        </div>
-        <h3 className="mt-4 text-base font-bold text-ink-900">{agent.name}</h3>
-        <p className="mt-1 text-sm text-ink-600">{agent.role}</p>
-        <div className="mt-3 flex flex-wrap gap-1.5">
-          {agent.tasks.slice(0, 2).map((t) => (
-            <span key={t} className="rounded-md bg-brand-50 px-2 py-0.5 text-[11px] font-medium text-brand-700">{t}</span>
-          ))}
-        </div>
-      </button>
-    </div>
-  );
-}
-
-function FinalCTA() {
-  const { navigate } = useRoute();
-  const { ref, visible } = useReveal();
-  return (
-    <section className="section-home">
-      <div className="container-rq">
-        <div ref={ref} className={`reveal ${visible ? 'is-visible' : ''}`}>
-          <div className="relative overflow-hidden rounded-3xl bg-ink-950 px-6 py-10 text-white sm:px-10 sm:py-12">
-            <div className="absolute inset-0 dot-bg opacity-[0.07]" />
-            <div className="absolute -right-24 -top-24 h-72 w-72 rounded-full bg-brand-600/20 blur-3xl" />
-            <div className="absolute -left-24 -bottom-24 h-72 w-72 rounded-full bg-accent/10 blur-3xl" />
-            <div className="relative max-w-2xl text-left">
-              <span className="eyebrow-light">
-                <Sparkles size={12} className="text-accent" /> Start your AI transformation
-              </span>
-              <h2 className="mt-4 text-display-lg text-balance">
-                Become an <span className="gradient-text-accent">AI-native enterprise.</span>
-              </h2>
-              <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
-                <button onClick={() => navigate('/contact#consultation')} className="btn-accent">
-                  <CalendarClock size={16} /> Schedule Strategy Session
-                </button>
-                <button onClick={() => navigate('/assessment')} className="btn-outline border-white/20 bg-white/5 text-white hover:bg-white/10 hover:border-white/40">
-                  <Brain size={16} /> Assess Your AI Readiness
-                </button>
+        <div
+          className={`section-block-gap-sm transition-all duration-700 ${inView ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'}`}
+          style={{ transitionDelay: inView ? '520ms' : '0ms' }}
+        >
+          <div className="flex flex-col items-start justify-between gap-4 rounded-xl border border-[#E7ECF3] bg-white/90 p-4 shadow-[0_4px_20px_rgba(17,24,39,0.05)] backdrop-blur-sm sm:p-5 lg:flex-row lg:items-center">
+            <div className="flex max-w-lg items-start gap-3">
+              <div className="grid h-9 w-9 shrink-0 place-items-center rounded-lg border border-[#163F35]/20 bg-[#F0F7F4] text-[#163F35]">
+                <Sparkles className="h-4 w-4" strokeWidth={1.5} />
               </div>
+              <div>
+                <h3 className="rq-card-title">
+                  Every Industry.
+                  <br />
+                  Every Business Challenge.
+                </h3>
+                <p className="rq-card-body mt-2">
+                  One AI foundation delivering measurable business outcomes across every industry.
+                </p>
+              </div>
+            </div>
+            <button
+              type="button"
+              onClick={() => navigate('/solutions')}
+              className="group inline-flex h-11 shrink-0 items-center justify-center gap-2 rounded-lg bg-[#FF6B00] px-5 text-[15px] font-medium text-white shadow-[0_6px_20px_rgba(255,107,0,0.24)] transition-all hover:-translate-y-0.5 hover:bg-[#E55D00] sm:text-base"
+            >
+              Explore AI Solutions
+              <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ─── AI SOLUTIONS MARKETPLACE ─── */
+
+const MARKETPLACE_AGENTS = [
+  { name: 'AI Sales Agent', icon: TrendingUp },
+  { name: 'AI Compliance Agent', icon: ShieldCheck },
+  { name: 'AI Procurement Agent', icon: ShoppingCart },
+  { name: 'AI Vendor Agent', icon: Users },
+  { name: 'AI Service Desk Agent', icon: Headphones },
+  { name: 'AI Resident Copilot', icon: User },
+  { name: 'AI Security Analyst', icon: ShieldCheck },
+  { name: 'AI Executive Assistant', icon: Sparkles },
+] as const;
+
+const MARKETPLACE_PLATFORMS = [
+  {
+    number: '01',
+    id: 'mysft',
+    name: 'mySFT AI',
+    description: 'AI Real Estate Lifecycle & Community Operations Platform.',
+    to: '/products#mysft',
+    variant: 'mysft' as const,
+  },
+  {
+    number: '02',
+    id: 'studio',
+    name: 'Requanto Studio',
+    description: 'AI Low-Code / No-Code Workflow Platform.',
+    to: '/products#studio',
+    variant: 'studio' as const,
+  },
+  {
+    number: '03',
+    id: 'shield',
+    name: 'Requanto Shield',
+    description: 'Cybersecurity & GRC Platform.',
+    to: '/products#shield',
+    variant: 'shield' as const,
+  },
+  {
+    number: '04',
+    id: 'command',
+    name: 'Requanto Command',
+    description: 'Enterprise AI Operations Platform.',
+    to: '/products#command',
+    variant: 'command' as const,
+  },
+] as const;
+
+function MarketplaceBackground() {
+  const particles = [
+    { left: '8%', top: '18%', delay: '0s' },
+    { left: '92%', top: '22%', delay: '2s' },
+    { left: '15%', top: '72%', delay: '1.2s' },
+    { left: '85%', top: '68%', delay: '3.4s' },
+  ];
+
+  return (
+    <>
+      <div className="pointer-events-none absolute inset-0 bg-white" />
+      <div className="dot-bg pointer-events-none absolute inset-0 opacity-[0.22]" />
+      <div className="hero-mesh pointer-events-none absolute inset-0 opacity-20" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_70%_55%_at_50%_0%,rgba(22,63,53,0.04),transparent_60%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_45%_40%_at_100%_80%,rgba(255,107,0,0.04),transparent_55%)]" />
+      {particles.map((p, i) => (
+        <span
+          key={i}
+          className="marketplace-orbit-dot pointer-events-none absolute h-1 w-1 rounded-full bg-[#FF6B00]/50"
+          style={{ left: p.left, top: p.top, animationDelay: p.delay }}
+          aria-hidden
+        />
+      ))}
+      <svg className="pointer-events-none absolute left-0 top-24 h-48 w-72 opacity-30" viewBox="0 0 280 160" fill="none" aria-hidden>
+        <path d="M0 120 C80 60 160 40 280 80" stroke="#FF6B00" strokeWidth="1.2" strokeOpacity="0.35" />
+        <path d="M0 140 C100 90 180 70 280 110" stroke="#FF6B00" strokeWidth="0.8" strokeOpacity="0.2" strokeDasharray="4 6" />
+      </svg>
+      <svg className="pointer-events-none absolute right-0 top-32 h-48 w-72 opacity-30" viewBox="0 0 280 160" fill="none" aria-hidden>
+        <path d="M280 120 C200 60 120 40 0 80" stroke="#FF6B00" strokeWidth="1.2" strokeOpacity="0.35" />
+        <path d="M280 140 C180 90 100 70 0 110" stroke="#FF6B00" strokeWidth="0.8" strokeOpacity="0.2" strokeDasharray="4 6" />
+      </svg>
+    </>
+  );
+}
+
+function PlatformIllustration({ variant }: { variant: 'mysft' | 'studio' | 'shield' | 'command' }) {
+  const images = {
+    mysft: '/mysft.png',
+    studio: '/rquanto.png',
+    shield: '/requanto_sheild.png',
+    command: '/requantocomand.png',
+  } as const;
+
+  const backgrounds = {
+    mysft: 'from-[#EEF4F2] to-[#E8F0EC]',
+    studio: 'from-[#FFF7F0] via-[#FAFBFC] to-[#EEF2FF]',
+    shield: 'from-[#EEF4F2] to-[#D8E8E3]',
+    command: 'from-[#E8EDF2] via-[#EEF2F6] to-[#E8F0EC]',
+  } as const;
+
+  return (
+    <div className={`marketplace-illus-float relative h-full w-full overflow-hidden bg-gradient-to-br ${backgrounds[variant]}`}>
+      <img
+        src={images[variant]}
+        alt=""
+        className="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
+      />
+    </div>
+  );
+}
+
+function MarketplaceAgentNav({
+  activeIndex,
+  onSelect,
+  onNavigate,
+  inView,
+}: {
+  activeIndex: number;
+  onSelect: (index: number) => void;
+  onNavigate: (to: string) => void;
+  inView: boolean;
+}) {
+  return (
+    <div
+      className={`relative flex h-full min-h-full flex-col overflow-hidden rounded-[24px] border border-white/10 bg-gradient-to-b from-[#1a4a3e] via-[#163F35] to-[#0f2d26] p-4 shadow-[0_0_48px_rgba(22,63,53,0.24),inset_0_1px_0_rgba(255,255,255,0.08)] transition-all duration-700 sm:p-5 ${inView ? 'translate-y-0 opacity-100' : 'translate-y-3 opacity-100'}`}
+    >
+      <div className="pointer-events-none absolute -inset-px rounded-[24px] bg-gradient-to-br from-[#FF6B00]/12 via-transparent to-[#3DD68C]/8 opacity-70" />
+      <svg
+        className="pointer-events-none absolute bottom-0 left-0 right-0 h-24 w-full opacity-25"
+        viewBox="0 0 400 120"
+        preserveAspectRatio="none"
+        aria-hidden
+      >
+        <path d="M0 80 Q100 40 200 70 T400 50 V120 H0 Z" fill="rgba(255,255,255,0.04)" />
+        <path d="M0 95 Q120 55 240 85 T400 65" fill="none" stroke="rgba(255,255,255,0.12)" strokeWidth="0.8" />
+        <path d="M0 105 Q80 75 160 95 T320 80" fill="none" stroke="rgba(255,107,0,0.15)" strokeWidth="0.6" strokeDasharray="3 5" />
+      </svg>
+
+      <div className="relative flex flex-1 flex-col">
+        <div className="flex items-start gap-3">
+          <div className="grid h-10 w-10 shrink-0 place-items-center rounded-lg border border-[#FF6B00]/35 bg-[#0d2420]/80 shadow-[0_0_16px_rgba(255,107,0,0.12)]">
+            <Brain className="h-5 w-5 text-[#FF6B00]" strokeWidth={1.5} />
+          </div>
+          <div className="min-w-0 flex-1">
+            <h3 className="text-base font-bold tracking-tight text-white sm:text-[17px]">Enterprise AI Agents</h3>
+            <p className="mt-1.5 text-[11px] leading-relaxed text-white/65 sm:text-xs">
+              Pre-built AI agents that work across your business to automate tasks, reduce costs, and drive smarter
+              decisions.
+            </p>
+          </div>
+        </div>
+
+        <ul className="mt-4 flex-1 space-y-0">
+          {MARKETPLACE_AGENTS.map((agent, i) => {
+            const Icon = agent.icon;
+            const isActive = activeIndex === i;
+            return (
+              <li key={agent.name}>
+                <button
+                  type="button"
+                  onClick={() => {
+                    onSelect(i);
+                    onNavigate('/agents');
+                  }}
+                  className={`group flex w-full items-center gap-2.5 rounded-lg px-1.5 py-2 text-left transition-all duration-300 sm:px-2 sm:py-2.5 ${
+                    isActive
+                      ? 'bg-white/10 shadow-[0_0_20px_rgba(255,107,0,0.18)] ring-1 ring-[#FF6B00]/30'
+                      : 'hover:bg-white/5'
+                  }`}
+                >
+                  <div className="grid h-7 w-7 shrink-0 place-items-center rounded-md bg-white text-[#111827] shadow-sm transition-transform duration-300 group-hover:scale-105">
+                    <Icon className="h-3.5 w-3.5" strokeWidth={1.75} />
+                  </div>
+                  <span className={`min-w-0 flex-1 text-[11px] font-medium leading-tight sm:text-xs ${isActive ? 'text-white' : 'text-white/90'}`}>
+                    {agent.name}
+                  </span>
+                  <ChevronRight
+                    className={`h-3.5 w-3.5 shrink-0 text-[#FF6B00] transition-all duration-300 ${isActive ? 'translate-x-0.5' : 'group-hover:translate-x-1'}`}
+                    strokeWidth={2.5}
+                  />
+                </button>
+                {i < MARKETPLACE_AGENTS.length - 1 && (
+                  <div className="h-px bg-white/10" aria-hidden />
+                )}
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    </div>
+  );
+}
+
+function MarketplacePlatformCard({
+  number,
+  name,
+  description,
+  variant,
+  to,
+  onNavigate,
+  delay,
+  inView,
+}: {
+  number: string;
+  name: string;
+  description: string;
+  variant: 'mysft' | 'studio' | 'shield' | 'command';
+  to: string;
+  onNavigate: (to: string) => void;
+  delay: number;
+  inView: boolean;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={() => onNavigate(to)}
+      style={{ transitionDelay: inView ? `${delay}ms` : '0ms' }}
+      className={`group relative flex h-full min-h-[136px] w-full flex-row overflow-hidden rounded-2xl border border-[#E5E7EB] bg-white text-left shadow-[0_2px_16px_rgba(17,24,39,0.05)] transition-all duration-500 hover:border-[#FF6B00]/30 hover:shadow-[0_12px_28px_rgba(17,24,39,0.1)] ${inView ? 'translate-y-0 opacity-100' : 'translate-y-2 opacity-100'}`}
+    >
+      <div className="relative w-[46%] shrink-0 overflow-hidden bg-[#F8FAFC] sm:w-[44%]">
+        <span className="absolute left-2.5 top-2.5 z-10 grid h-6 w-6 place-items-center rounded-md bg-[#163F35] text-[10px] font-bold text-white shadow-sm">
+          {number}
+        </span>
+        <PlatformIllustration variant={variant} />
+      </div>
+      <div className="relative flex min-w-0 flex-1 flex-col justify-center px-3.5 py-3 sm:px-4">
+        <h4 className="pr-8 text-[13px] font-bold leading-snug tracking-tight text-[#163F35] sm:text-sm">{name}</h4>
+        <p className="mt-1 line-clamp-3 text-[10px] leading-snug text-[#52627D] sm:text-[11px]">{description}</p>
+        <span className="absolute bottom-2.5 right-2.5 grid h-7 w-7 place-items-center rounded-full bg-[#FF6B00] text-white shadow-[0_4px_12px_rgba(255,107,0,0.35)] transition-all duration-300 group-hover:scale-105 sm:bottom-3 sm:right-3 sm:h-8 sm:w-8">
+          <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
+        </span>
+      </div>
+    </button>
+  );
+}
+
+function MarketplacePlatformsPanel({
+  onNavigate,
+  inView,
+}: {
+  onNavigate: (to: string) => void;
+  inView: boolean;
+}) {
+  return (
+    <div className="flex h-full min-h-full flex-col rounded-[24px] border border-[#E5E7EB] bg-white p-4 shadow-[0_4px_24px_rgba(17,24,39,0.05)] sm:p-5 lg:p-6">
+      <div className="mb-4 flex shrink-0 items-start gap-3 sm:mb-5">
+        <div className="grid h-10 w-10 shrink-0 place-items-center rounded-xl border border-[#E5E7EB] bg-[#F8FAF9] text-[#163F35] shadow-sm">
+          <Layers3 className="h-5 w-5" strokeWidth={1.5} />
+        </div>
+        <div className="min-w-0">
+          <h3 className="text-lg font-bold tracking-tight text-[#163F35] sm:text-xl">Enterprise Platforms</h3>
+          <p className="mt-1 text-xs leading-relaxed text-[#52627D] sm:text-sm">
+            Powerful AI-native platforms built for modern enterprises.
+          </p>
+        </div>
+      </div>
+      <div className="grid min-h-0 flex-1 auto-rows-fr grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4">
+        {MARKETPLACE_PLATFORMS.map((platform, i) => (
+          <MarketplacePlatformCard
+            key={platform.id}
+            number={platform.number}
+            name={platform.name}
+            description={platform.description}
+            variant={platform.variant}
+            to={platform.to}
+            onNavigate={onNavigate}
+            delay={200 + i * 100}
+            inView={inView}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function AgentsSection() {
+  const { navigate } = useRoute();
+  const { ref, inView } = useInView();
+  const [activeAgent, setActiveAgent] = useState(0);
+
+  return (
+    <section ref={ref} className="relative overflow-hidden home-section-pad bg-white">
+      <MarketplaceBackground />
+
+      <div className="container-rq relative z-10">
+        <div
+          className={`mx-auto max-w-[760px] text-center transition-all duration-700 ${inView ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'}`}
+        >
+          <div className="inline-flex items-center gap-2 rounded-full border border-[#E5E7EB] bg-white px-3.5 py-1.5 shadow-sm">
+            <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#FF6B00]" />
+            <span className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[#374151]">
+              AI Solutions Marketplace
+            </span>
+          </div>
+          <h2 className="mt-4 text-3xl font-extrabold tracking-tight text-[#111827] md:text-4xl lg:text-[2.65rem] lg:leading-[1.12]">
+            Enterprise <span className="text-[#FF6B00]">AI Solutions</span>.
+            <br />
+            One Marketplace.
+          </h2>
+          {/* <p className="mt-4 text-base leading-relaxed text-[#52627D] md:text-[17px] md:leading-[1.7]">
+            Explore enterprise-ready AI agents and intelligent platforms designed to automate operations,
+            strengthen security, improve compliance, and accelerate digital transformation.
+          </p> */}
+        </div>
+
+        <div className="section-block-gap grid items-stretch gap-5 lg:grid-cols-[34%_66%] lg:gap-6 xl:gap-8">
+          <div className="flex h-full w-full min-w-0">
+            <MarketplaceAgentNav
+              activeIndex={activeAgent}
+              onSelect={setActiveAgent}
+              onNavigate={navigate}
+              inView={inView}
+            />
+          </div>
+
+          <div className="h-full min-w-0">
+            <MarketplacePlatformsPanel onNavigate={navigate} inView={inView} />
+          </div>
+        </div>
+
+        <div
+          className={`section-block-gap-sm transition-all duration-700 ${inView ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'}`}
+          style={{ transitionDelay: inView ? '600ms' : '0ms' }}
+        >
+          <div className="flex flex-col items-start justify-between gap-4 rounded-xl border border-[#E7ECF3] bg-white/90 p-4 shadow-[0_4px_20px_rgba(17,24,39,0.05)] backdrop-blur-sm sm:p-5 lg:flex-row lg:items-center">
+            <div className="flex max-w-lg items-start gap-3">
+              <div className="grid h-9 w-9 shrink-0 place-items-center rounded-lg border border-[#163F35]/20 bg-[#F0F7F4] text-[#163F35]">
+                <Sparkles className="h-4 w-4" strokeWidth={1.5} />
+              </div>
+              <div>
+                <h3 className="text-base font-semibold leading-snug tracking-tight text-[#111827] sm:text-[17px]">
+                  One Marketplace.
+                  <br />
+                  Infinite Enterprise Possibilities.
+                </h3>
+                <p className="mt-1.5 text-[13px] leading-relaxed text-[#52627D]">
+                  Deploy AI agents and enterprise platforms together to modernize operations with a unified AI ecosystem.
+                </p>
+              </div>
+            </div>
+            <button
+              type="button"
+              onClick={() => navigate('/solutions')}
+              className="group inline-flex h-10 shrink-0 items-center justify-center gap-2 rounded-lg bg-[#FF6B00] px-5 text-[13px] font-semibold text-white shadow-[0_6px_20px_rgba(255,107,0,0.24)] transition-all hover:-translate-y-0.5 hover:bg-[#E55D00]"
+            >
+              Explore AI Solutions
+              <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ─── FINAL CTA ─── */
+
+function FinalCtaBackground() {
+  const particles = [
+    { left: '6%', top: '12%', delay: '0s' },
+    { left: '88%', top: '18%', delay: '2.4s' },
+    { left: '12%', top: '78%', delay: '1.1s' },
+    { left: '94%', top: '72%', delay: '3.8s' },
+    { left: '48%', top: '8%', delay: '1.8s' },
+  ];
+
+  return (
+    <>
+      <div className="pointer-events-none absolute inset-0 bg-white" />
+      <div className="dot-bg pointer-events-none absolute inset-0 opacity-[0.18]" />
+      <div className="hero-mesh pointer-events-none absolute inset-0 opacity-15" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_20%_30%,rgba(22,63,53,0.04),transparent_60%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_50%_45%_at_85%_70%,rgba(255,107,0,0.05),transparent_55%)]" />
+      {particles.map((p, i) => (
+        <span
+          key={i}
+          className="cta-particle-drift pointer-events-none absolute h-1 w-1 rounded-full bg-[#FF6B00]/45"
+          style={{ left: p.left, top: p.top, animationDelay: p.delay }}
+          aria-hidden
+        />
+      ))}
+      <svg className="pointer-events-none absolute left-[5%] top-[15%] h-40 w-56 opacity-25" viewBox="0 0 220 140" fill="none" aria-hidden>
+        <path d="M0 100 C60 40 140 30 220 70" stroke="#FF6B00" strokeWidth="1" strokeOpacity="0.4" />
+        <path d="M0 115 C80 65 150 55 220 90" stroke="#FF6B00" strokeWidth="0.7" strokeOpacity="0.25" strokeDasharray="4 6" />
+      </svg>
+      <svg className="pointer-events-none absolute bottom-[10%] right-[4%] h-40 w-56 opacity-25" viewBox="0 0 220 140" fill="none" aria-hidden>
+        <path d="M220 100 C160 40 80 30 0 70" stroke="#FF6B00" strokeWidth="1" strokeOpacity="0.4" />
+        <path d="M220 115 C140 65 70 55 0 90" stroke="#FF6B00" strokeWidth="0.7" strokeOpacity="0.25" strokeDasharray="4 6" />
+      </svg>
+    </>
+  );
+}
+
+function FinalCtaIllustration() {
+  return (
+    <div className="relative flex h-full min-h-[280px] w-full items-center justify-center sm:min-h-[320px] lg:min-h-[380px]">
+      <img
+        src="/cta.png"
+        alt="Requanto AI enterprise ecosystem with connected buildings and analytics"
+        className="cta-building-float h-auto w-full max-w-[380px] object-contain sm:max-w-[420px] lg:max-w-[480px] xl:max-w-[540px]"
+      />
+    </div>
+  );
+}
+
+function FinalCtaButton({
+  variant,
+  icon: Icon,
+  children,
+  onClick,
+}: {
+  variant: 'primary' | 'secondary' | 'outline';
+  icon: typeof Calendar;
+  children: React.ReactNode;
+  onClick: () => void;
+}) {
+  const styles = {
+    primary:
+      'border-[#163F35] bg-[#163F35] text-white shadow-[0_8px_24px_rgba(22,63,53,0.22)] hover:shadow-[0_16px_40px_rgba(22,63,53,0.32)] hover:bg-[#1E5A4A]',
+    secondary:
+      'border-[#E5E7EB] bg-white text-[#111827] shadow-[0_2px_12px_rgba(17,24,39,0.04)] hover:shadow-[0_12px_28px_rgba(17,24,39,0.08)] hover:bg-[#FAFAFA]',
+    outline:
+      'border-[#E5E7EB] bg-white text-[#111827] shadow-[0_2px_12px_rgba(17,24,39,0.04)] hover:shadow-[0_12px_28px_rgba(17,24,39,0.08)] hover:bg-[#FAFAFA]',
+  } as const;
+
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className={`group inline-flex h-10 w-full items-center justify-center gap-2 rounded-xl border px-4 text-[13px] font-semibold transition-all duration-300 hover:-translate-y-1 sm:w-auto ${styles[variant]}`}
+    >
+      <Icon className="h-4 w-4 shrink-0" strokeWidth={1.75} />
+      <span>{children}</span>
+      <ArrowRight className="h-4 w-4 shrink-0 transition-transform duration-300 group-hover:translate-x-1" />
+    </button>
+  );
+}
+
+const FINAL_CTA_TRUST = [
+  { label: 'Enterprise Ready', icon: Shield },
+  { label: 'Secure & Compliant', icon: Lock },
+  { label: 'Proven Outcomes', icon: BarChart3 },
+] as const;
+
+function FinalCtaSection() {
+  const { navigate } = useRoute();
+  const { ref, inView } = useInView();
+
+  return (
+    <section ref={ref} className="relative overflow-hidden pb-14 md:pb-16 bg-white">
+      <FinalCtaBackground />
+
+      <div className="container-rq relative z-10">
+        <div className="overflow-hidden rounded-[24px] border border-[#E5E7EB] bg-white p-6 shadow-[0_8px_32px_rgba(17,24,39,0.05)] sm:p-8 lg:p-10">
+          <div className="grid items-center gap-8 lg:grid-cols-[52%_48%] lg:gap-10">
+            <div
+              className={`flex flex-col justify-center transition-all duration-700 ${inView ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-100'}`}
+            >
+              <div className="inline-flex w-fit items-center gap-2 rounded-full border border-[#E5E7EB] bg-white px-3.5 py-1.5 shadow-sm">
+                <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#FF6B00]" />
+                <span className="rq-section-badge">Final CTA</span>
+              </div>
+
+              <h2 className="mt-4 text-3xl font-extrabold tracking-tight text-[#0B1633] md:text-4xl lg:text-[2.65rem] lg:leading-[1.15]">
+                Your Industry Is Changing.
+                <br />
+                The Question Is:
+                <br />
+                <span className="text-[#FF6B00]">Will Your Technology Lead the Change?</span>
+              </h2>
+
+              <p className="mt-4 text-base leading-relaxed text-[#52627D] md:text-[17px] md:leading-[1.7]">
+                Build AI-native operations with{' '}
+                <span className="font-semibold text-[#111827]">Requanto Technologies.</span>
+              </p>
+
+              <div className="mt-6 flex flex-col gap-2.5 sm:flex-row sm:flex-wrap">
+                <FinalCtaButton variant="primary" icon={Calendar} onClick={() => navigate('/contact#consultation')}>
+                  Book a Consultation
+                </FinalCtaButton>
+                <FinalCtaButton variant="secondary" icon={User} onClick={() => navigate('/contact')}>
+                  Talk to an Expert
+                </FinalCtaButton>
+                <FinalCtaButton variant="outline" icon={Lightbulb} onClick={() => navigate('/solutions')}>
+                  Explore AI Solutions
+                </FinalCtaButton>
+              </div>
+
+              <div
+                className={`mt-8 flex flex-col gap-4 border-t border-[#E5E7EB] pt-6 transition-all duration-700 sm:flex-row sm:items-center sm:gap-0 ${inView ? 'translate-y-0 opacity-100' : 'translate-y-3 opacity-70'}`}
+                style={{ transitionDelay: inView ? '300ms' : '0ms' }}
+              >
+                {FINAL_CTA_TRUST.map((item, i) => {
+                  const Icon = item.icon;
+                  return (
+                    <div key={item.label} className="flex flex-1 items-center sm:justify-start lg:justify-center">
+                      {i > 0 && (
+                        <div className="mx-4 hidden h-6 w-px shrink-0 bg-[#E5E7EB] sm:block" aria-hidden />
+                      )}
+                      <div className="flex items-center gap-2">
+                        <Icon className="h-3.5 w-3.5 shrink-0 text-[#6B7280]" strokeWidth={1.75} />
+                        <span className="text-xs font-medium text-[#6B7280] sm:text-[13px]">{item.label}</span>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            <div
+              className={`flex h-full w-full items-center justify-center transition-all duration-700 ${inView ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-100'}`}
+              style={{ transitionDelay: inView ? '150ms' : '0ms' }}
+            >
+              <FinalCtaIllustration />
             </div>
           </div>
         </div>

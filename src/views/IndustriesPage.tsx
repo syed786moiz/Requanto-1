@@ -22,7 +22,7 @@ export default function IndustriesPage() {
         ]}
       />
 
-      <section className="section">
+      <section className="section pb-0 sm:pb-0 lg:pb-6">
         <div className="container-rq">
           <SectionHeading
             align="left"
@@ -38,15 +38,21 @@ export default function IndustriesPage() {
         </div>
       </section>
 
-      <section className="section bg-section">
+      <section className="section bg-section pt-0 sm:pt-0 lg:pt-6">
         <div className="container-rq">
-          <SectionHeading
-            align="left"
-            eyebrow="Build With Requanto"
-            title={<>Start with your <span className="gradient-text">industry.</span></>}
-            description="Tell us your industry and outcomes — we'll bring the AI platforms, automation and advisory."
-          />
-          <div className="mt-10 flex flex-wrap justify-start gap-3">
+          <div className="max-w-3xl">
+            <span className="eyebrow">
+              <span className="h-1.5 w-1.5 rounded-full bg-brand-500" />
+              Build With Requanto
+            </span>
+            <h2 className="mt-3 text-display-lg text-balance text-ink-900">
+              Start with your <span className="gradient-text">industry.</span>
+            </h2>
+            <p className="rq-card-body mt-5 max-w-2xl text-base leading-relaxed sm:text-lg sm:leading-relaxed md:text-xl md:leading-relaxed">
+              Tell us your industry and outcomes — we&apos;ll bring the AI platforms, automation and advisory.
+            </p>
+          </div>
+          <div className="mt-8 flex flex-wrap justify-start gap-3">
             <button onClick={() => navigate('/contact#expert')} className="btn-accent">
               Talk to an industry expert <ArrowRight size={15} />
             </button>

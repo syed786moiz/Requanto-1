@@ -2,7 +2,7 @@
 
 import { useRoute } from '../lib/router';
 
-export function Logo({ light = false, onClick }: { light?: boolean; onClick?: () => void }) {
+export function Logo({ light = false, tall = false, onClick }: { light?: boolean; tall?: boolean; onClick?: () => void }) {
   const { navigate } = useRoute();
   return (
     <button
@@ -23,7 +23,7 @@ export function Logo({ light = false, onClick }: { light?: boolean; onClick?: ()
         <img
           src="/requanto-logo.png"
           alt="Requanto Technologies"
-          className="h-8 w-auto object-contain sm:h-9"
+          className={`w-auto object-contain ${tall ? 'h-11 sm:h-12' : 'h-8 sm:h-9'}`}
         />
       </span>
     </button>
